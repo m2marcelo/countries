@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/launchFragment">
+
+    <fragment
+        android:id="@+id/launchFragment"
+        android:name="eu.marcelomorais.countries.LaunchFragment"
+        android:label="fragment_launch"
+        tools:layout="@layout/fragment_launch" >
+        <action
+            android:id="@+id/action_launchFragment_to_myCountryFragment"
+            app:destination="@id/myCountryFragment" />
+        <action
+            android:id="@+id/action_launchFragment_to_searchCountryFragment"
+            app:destination="@id/searchCountryFragment" />
+        <action
+            android:id="@+id/action_launchFragment_to_countriesFragment"
+            app:destination="@id/countriesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myCountryFragment"
+        android:name="eu.marcelomorais.countries.MyCountryFragment"
+        android:label="my_country_fragment"
+        tools:layout="@layout/my_country_fragment" />
+    <fragment
+        android:id="@+id/searchCountryFragment"
+        android:name="eu.marcelomorais.countries.SearchCountryFragment"
+        android:label="search_country_fragment"
+        tools:layout="@layout/search_country_fragment" />
+    <fragment
+        android:id="@+id/countriesFragment"
+        android:name="eu.marcelomorais.countries.CountriesFragment"
+        android:label="countries_fragment"
+        tools:layout="@layout/countries_fragment" />
+</navigation>
