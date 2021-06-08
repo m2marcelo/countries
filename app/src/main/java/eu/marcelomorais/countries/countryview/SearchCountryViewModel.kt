@@ -1,4 +1,4 @@
-package eu.marcelomorais.countries
+package eu.marcelomorais.countries.countryview
 
 import androidx.lifecycle.ViewModel
 

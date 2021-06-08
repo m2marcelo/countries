@@ -22,17 +22,17 @@
     </fragment>
     <fragment
         android:id="@+id/myCountryFragment"
-        android:name="eu.marcelomorais.countries.MyCountryFragment"
+        android:name="eu.marcelomorais.countries.countryview.MyCountryFragment"
         android:label="my_country_fragment"
         tools:layout="@layout/my_country_fragment" />
     <fragment
         android:id="@+id/searchCountryFragment"
-        android:name="eu.marcelomorais.countries.SearchCountryFragment"
+        android:name="eu.marcelomorais.countries.countryview.SearchCountryFragment"
         android:label="search_country_fragment"
         tools:layout="@layout/search_country_fragment" />
     <fragment
         android:id="@+id/countriesFragment"
-        android:name="eu.marcelomorais.countries.CountriesFragment"
+        android:name="eu.marcelomorais.countries.countryview.CountriesFragment"
         android:label="countries_fragment"
         tools:layout="@layout/countries_fragment" />
 </navigation>

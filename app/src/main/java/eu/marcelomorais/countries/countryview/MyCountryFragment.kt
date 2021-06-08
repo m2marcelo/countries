@@ -1,4 +1,4 @@
-package eu.marcelomorais.countries
+package eu.marcelomorais.countries.countryview
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,25 +6,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import eu.marcelomorais.countries.R
 
-class CountriesFragment : Fragment() {
+class MyCountryFragment : Fragment() {
 
     companion object {
-        fun newInstance() = CountriesFragment()
+        fun newInstance() = MyCountryFragment()
     }
 
-    private lateinit var viewModel: CountriesViewModel
+    private lateinit var viewModel: MyCountryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.countries_fragment, container, false)
+        return inflater.inflate(R.layout.my_country_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CountriesViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MyCountryViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

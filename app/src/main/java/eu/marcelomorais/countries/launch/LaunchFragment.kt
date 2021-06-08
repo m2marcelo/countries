@@ -1,4 +1,4 @@
-package eu.marcelomorais.countries
+package eu.marcelomorais.countries.launch
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
