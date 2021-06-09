@@ -13,9 +13,13 @@ import com.google.android.gms.tasks.OnTokenCanceledListener
 import eu.marcelomorais.countries.restApi.models.CurrentCountry
 import java.util.*
 
-class LocationUtils {
+class LocationUtils(private var handler: LocationUtils.LocationListener?) {
 
     lateinit var locationProvider: FusedLocationProviderClient
+
+    interface LocationListener {
+        fun onCurrentLocationReady(location: CurrentCountry)
+    }
 
     @RequiresPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)
     fun getLocation(activity: Activity, context: Context) {
@@ -32,6 +36,7 @@ class LocationUtils {
 
         }).addOnSuccessListener {
             val currentLocation = geoCodeLocation(it, context)
+            handler?.onCurrentLocationReady(currentLocation)
             Log.d("LocationUtils", "getLocation addOnSuccessListener-> currentLocation = $currentLocation")
 
         }.addOnCompleteListener {

@@ -2,11 +2,12 @@ package eu.marcelomorais.countries.restApi.models
 
 import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Currency(
     val code: String,
     val name: String
 )
-
+@JsonClass(generateAdapter = true)
 data class Language(
     val iso639_1: String,
     val name: String,
@@ -17,13 +18,13 @@ data class Language(
 data class CountryDetails(
     val name: String,
     val capital: String,
-    val callingCode: String,
+    val callingCodes: List<String>,
     val region: String,
-    val subRegion: String,
+    val subregion: String,
     val population: String,
     val flag: String,
     val currencies: List<Currency>,
     val languages: List<Language>,
     val borders: List<String>? = null,
-    val timezone: List<String>
+    val timezones: List<String>
 )

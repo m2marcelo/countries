@@ -12,10 +12,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import eu.marcelomorais.countries.R
 import eu.marcelomorais.countries.databinding.CountriesFragmentBinding
+import eu.marcelomorais.countries.restApi.models.CurrentCountry
 import eu.marcelomorais.countries.utils.LocationUtils
 import eu.marcelomorais.countries.utils.PermissionHandler
 
-class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener  {
+class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, LocationUtils.LocationListener  {
 
     private val viewModel: MyCountryViewModel by lazy {
         val application = requireNotNull(this.activity).application
@@ -26,7 +27,7 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener  {
     }
 
     private val permissionUtil = PermissionHandler(this)
-    private val locationUtil = LocationUtils()
+    private val locationUtil = LocationUtils(this)
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -64,4 +65,11 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener  {
     override fun onPermissionDenied() {
         Toast.makeText(requireContext(), getString(R.string.error_permission_denied), Toast.LENGTH_LONG).show()
     }
+
+    override fun onCurrentLocationReady(location: CurrentCountry) {
+        Log.d("onCurrentLocationReady in MyCountryFragment", "location = $location")
+        viewModel.getCurrentCountry(location)
+    }
+
+
 }

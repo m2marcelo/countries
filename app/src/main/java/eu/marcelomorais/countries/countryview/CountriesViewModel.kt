@@ -22,7 +22,6 @@ class CountriesViewModel(application: Application) : AndroidViewModel(applicatio
         Log.d("CountriesViewModel", "testApi")
         val apiInterface = CountriesService.create().getAll()
 
-        //apiInterface.enqueue( Callback<List<Movie>>())
         apiInterface.enqueue( object : Callback<List<Country>> {
             override fun onResponse(call: Call<List<Country>>?, response: Response<List<Country>>?) {
 
