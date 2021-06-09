@@ -3,7 +3,6 @@ package eu.marcelomorais.countries.countryview
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import eu.marcelomorais.countries.restApi.CountriesService
 import eu.marcelomorais.countries.restApi.models.Country
@@ -16,10 +15,10 @@ class CountriesViewModel(application: Application) : AndroidViewModel(applicatio
     // TODO: Implement the ViewModel
 
     init {
-        viewModelScope.launch { testApi() }
+        viewModelScope.launch { getAllCountries() }
     }
 
-    fun testApi() {
+    fun getAllCountries() {
         Log.d("CountriesViewModel", "testApi")
         val apiInterface = CountriesService.create().getAll()
 

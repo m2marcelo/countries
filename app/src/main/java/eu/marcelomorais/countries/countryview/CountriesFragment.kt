@@ -34,7 +34,7 @@ class CountriesFragment : Fragment() {
         Log.d("CountriesFragment", "onCreateView")
 
         binding.lifecycleOwner = viewLifecycleOwner
-        viewModel.testApi()
+        viewModel.getAllCountries()
 
         return binding.root
     }
