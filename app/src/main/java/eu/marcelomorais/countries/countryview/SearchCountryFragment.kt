@@ -2,31 +2,41 @@ package eu.marcelomorais.countries.countryview
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import eu.marcelomorais.countries.R
+import eu.marcelomorais.countries.databinding.SearchCountryFragmentBinding
 
 class SearchCountryFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = SearchCountryFragment()
+    private val viewModel: SearchCountryViewModel by lazy {
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = SearchCountryViewModelFactory(application)
+        ViewModelProvider(this, viewModelFactory)
+            .get(SearchCountryViewModel::class.java)
+
     }
 
-    private lateinit var viewModel: SearchCountryViewModel
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.search_country_fragment, container, false)
+        val binding: SearchCountryFragmentBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.search_country_fragment,
+            container,
+            false
+        )
+
+        Log.d("SearchCountryFragment", "onCreateView")
+
+        binding.lifecycleOwner = viewLifecycleOwner
+//        binding.viewModel = viewModel
+
+        return binding.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SearchCountryViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }
