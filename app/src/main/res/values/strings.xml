@@ -6,4 +6,5 @@
     <string name="btn_text_show_all">Show all countries</string>
     <string name="btn_text_show_my_country">Show my country</string>
     <string name="btn_text_search_country">Search Country</string>
+    <string name="error_permission_denied">Error. The location permission for this app as not granted!</string>
 </resources>
