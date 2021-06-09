@@ -21,7 +21,6 @@ class CountriesFragment : Fragment() {
 
     }
 
-
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -39,19 +38,4 @@ class CountriesFragment : Fragment() {
 
         return binding.root
     }
-
-
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        return inflater.inflate(R.layout.countries_fragment, container, false)
-//    }
-
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this).get(CountriesViewModel::class.java)
-//        // TODO: Use the ViewModel
-//    }
-
 }
