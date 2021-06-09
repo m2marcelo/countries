@@ -1,5 +1,6 @@
 package eu.marcelomorais.countries.countryview
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import eu.marcelomorais.countries.R
 import eu.marcelomorais.countries.databinding.CountriesFragmentBinding
+import eu.marcelomorais.countries.utils.LocationUtils
 import eu.marcelomorais.countries.utils.PermissionHandler
 
 class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener  {
@@ -24,6 +26,7 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener  {
     }
 
     private val permissionUtil = PermissionHandler(this)
+    private val locationUtil = LocationUtils()
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -53,8 +56,9 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener  {
         super.onDestroyView()
     }
 
+    @SuppressLint("MissingPermission")
     override fun onPermissionGranted() {
-//        All good, nothing to do here
+        locationUtil.getLocation(requireActivity(), requireContext())
     }
 
     override fun onPermissionDenied() {
