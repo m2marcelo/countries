@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/launchFragment"
-        android:name="eu.marcelomorais.countries.LaunchFragment"
+        android:name="eu.marcelomorais.countries.launch.LaunchFragment"
         android:label="fragment_launch"
         tools:layout="@layout/fragment_launch" >
         <action

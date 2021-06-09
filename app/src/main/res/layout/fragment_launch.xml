@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".LaunchFragment">
+    tools:context="eu.marcelomorais.countries.MainActivity">
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/logo_image"
+            android:layout_width="352dp"
+            android:layout_height="358dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/logo_image"
+            app:srcCompat="@drawable/ic_world_svg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_show_all_countries"
+            android:layout_width="153dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/btn_text_show_all"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo_image" />
+
+        <Button
+            android:id="@+id/btn_show_my_country"
+            android:layout_width="140dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/btn_text_show_my_country"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_show_all_countries" />
+
+        <Button
+            android:id="@+id/btn_search_country"
+            android:layout_width="159dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/btn_text_search_country"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_show_my_country"
+            app:layout_constraintVertical_bias="0.060000002" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

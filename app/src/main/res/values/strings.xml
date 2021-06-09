@@ -2,4 +2,8 @@
     <string name="app_name">countries</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo_image">Logo image</string>
+    <string name="btn_text_show_all">Show all countries</string>
+    <string name="btn_text_show_my_country">Show my country</string>
+    <string name="btn_text_search_country">Search Country</string>
 </resources>
