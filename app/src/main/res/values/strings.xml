@@ -7,4 +7,9 @@
     <string name="btn_text_show_my_country">Show my country</string>
     <string name="btn_text_search_country">Search Country</string>
     <string name="error_permission_denied">Error. The location permission for this app as not granted!</string>
+    <string name="search_label">Search for a country</string>
+    <string name="search_instructions_label">Type the name or part of the name for the country you want to find:</string>
+    <string name="input_country_hint">Type a country name, like Sweden</string>
+    <string name="btn_search_label">Search</string>
+
 </resources>
