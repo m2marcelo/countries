@@ -4,10 +4,9 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import eu.marcelomorais.countries.restApi.CountriesService
 import eu.marcelomorais.countries.restApi.models.Country
-import kotlinx.coroutines.launch
+import eu.marcelomorais.countries.utils.SingleLiveEvent
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,8 +15,6 @@ class SearchCountryViewModel (application: Application) : AndroidViewModel(appli
     // TODO: Implement the ViewModel
     private val _countryName = MutableLiveData("")
     val countryName: MutableLiveData<String> = _countryName
-
-    private val _foundCountriesList: MutableLiveData<List<Country>> = MutableLiveData()
 
     fun searchCountry() {
         Log.d("SearchCountryViewModel", "getCurrentCountry countryName = " + countryName.value)

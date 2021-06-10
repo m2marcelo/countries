@@ -49,7 +49,7 @@
             android:autofillHints="@string/input_country_hint"
             android:ems="10"
             android:hint="@string/input_country_hint"
-            android:text="@{viewModel.countryName}"
+            android:text="@={viewModel.countryName}"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
