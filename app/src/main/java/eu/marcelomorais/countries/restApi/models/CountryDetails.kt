@@ -16,6 +16,7 @@ data class Language(
 
 @JsonClass(generateAdapter = true)
 data class CountryDetails(
+    val id: Int,
     val name: String,
     val capital: String,
     val callingCodes: List<String>,
