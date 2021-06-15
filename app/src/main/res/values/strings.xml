@@ -11,5 +11,8 @@
     <string name="search_instructions_label">Type the name or part of the name for the country you want to find:</string>
     <string name="input_country_hint">Type a country name, like Sweden</string>
     <string name="btn_search_label">Search</string>
+    <string name="contentFlag">Country flag</string>
+    <string name="capital_label">Capital:</string>
+    <string name="region_label">Region:</string>
 
 </resources>
