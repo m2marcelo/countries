@@ -28,11 +28,8 @@ abstract class CountriesDatabase : RoomDatabase() {
 
                     INSTANCE = instance
                 }
-
                 return instance
             }
         }
-
     }
-
 }

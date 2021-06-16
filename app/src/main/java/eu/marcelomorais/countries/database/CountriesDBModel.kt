@@ -5,9 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import eu.marcelomorais.countries.restApi.models.Country
 
-@Entity(tableName = "countries_database")
+@Entity(tableName = "countries_database_table")
 data class CountriesDBModel(
-    @PrimaryKey val id: Int,
+    @PrimaryKey (autoGenerate = true) val id: Int,
     @ColumnInfo(name = "countryName") val countryName: String,
     @ColumnInfo(name = "countryCapital") val countryCapital: String,
     @ColumnInfo(name = "countryRegion") val countryRegion: String,

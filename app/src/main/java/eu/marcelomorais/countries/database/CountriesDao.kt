@@ -8,20 +8,20 @@ interface CountriesDao {
     /**
      * @return all countries.
      */
-    @Query("SELECT * FROM countries_database")
+    @Query("SELECT * FROM countries_database_table")
     suspend fun getAllCountriesFromDB(): List<CountriesDBModel>
 
     /**
      * @param countryId the id of the country
      * @return the list of CountriesDBModel objects with the countryId
      */
-    @Query("SELECT * FROM countries_database WHERE id = :countryId")
+    @Query("SELECT * FROM countries_database_table WHERE id = :countryId")
     suspend fun getCountriesById(countryId: Int): List<CountriesDBModel?>
 
     /**
      * Delete database content
      */
-    @Query("DELETE FROM countries_database")
+    @Query("DELETE FROM countries_database_table")
     suspend fun deleteCountries()
 
 }
