@@ -1,15 +1,28 @@
 package eu.marcelomorais.countries.restApi
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import eu.marcelomorais.countries.restApi.models.Country
 import eu.marcelomorais.countries.restApi.models.CountryDetails
-import retrofit2.Call
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.Call
 
-interface CountriesService {
+private const val BASE_URL = "https://restcountries.eu/rest/v2/"
 
+private val moshi = Moshi.Builder()
+    .add(KotlinJsonAdapterFactory())
+    .build()
+
+private val retrofit = Retrofit.Builder()
+    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .client(CountriesHttpClient.getClient())
+    .baseUrl(BASE_URL)
+    .build()
+
+interface CountriesRestAPI {
     @GET("all")
     fun getAll(): Call<List<Country>>
 
@@ -18,18 +31,9 @@ interface CountriesService {
 
     @GET("name/{country}")
     fun getCountryDetail(@Path("country") name: String):Call<List<CountryDetails>>
+}
 
-    companion object {
-
-        var BASE_URL = "https://restcountries.eu/rest/v2/"
-
-        fun create() : CountriesService {
-
-            val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(BASE_URL)
-                .build()
-            return retrofit.create(CountriesService::class.java)
-        }
-    }
+object CountriesService {
+    fun create(): CountriesRestAPI =
+        retrofit.create(CountriesRestAPI::class.java)
 }
