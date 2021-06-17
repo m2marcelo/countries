@@ -24,7 +24,7 @@ private val retrofit = Retrofit.Builder()
 
 interface CountriesRestAPI {
     @GET("all")
-    fun getAll(): Call<List<Country>>
+    suspend fun getAll(): List<Country>
 
     @GET("name/{country}")
     fun getCountryByName(@Path("country") name: String):Call<List<Country>>

@@ -5,35 +5,25 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import eu.marcelomorais.countries.restApi.CountriesService
-import eu.marcelomorais.countries.restApi.models.Country
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import java.lang.Exception
 
 class CountriesViewModel(application: Application) : AndroidViewModel(application) {
     // TODO: Implement the ViewModel
 
     init {
-        viewModelScope.launch { getAllCountries() }
+       getAllCountries()
     }
 
     fun getAllCountries() {
         Log.d("CountriesViewModel", "testApi")
-        val apiInterface = CountriesService.create().getAll()
-
-        apiInterface.enqueue( object : Callback<List<Country>> {
-            override fun onResponse(call: Call<List<Country>>?, response: Response<List<Country>>?) {
-
-                if(response?.body() != null)
-                    Log.d("CountriesViewModel", "testApi result = " + response.body())
+        viewModelScope.launch {
+            try {
+                var listResult = CountriesService.create().getAll()
+                Log.d("CountriesViewModel", "testApi result = " + listResult)
+            } catch (e: Exception) {
+                Log.d("CountriesViewModel", "Exception = $e")
             }
-
-            override fun onFailure(call: Call<List<Country>>?, t: Throwable?) {
-
-            }
-        })
-
+        }
     }
-
 }
