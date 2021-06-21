@@ -1,6 +1,6 @@
 package eu.marcelomorais.countries.repository
 
-sealed class Outcome<out T : Any> {
-    data class Success<out T : Any>(val value: T) : Outcome<T>()
-    data class Error(val cause: Exception? = null) : Outcome<Nothing>()
+sealed class Outcome<out T> {
+    data class Success<T>(val value: T) : Outcome<T>()
+    data class Error<T>(val cause: Exception? = null) : Outcome<T>()
 }
