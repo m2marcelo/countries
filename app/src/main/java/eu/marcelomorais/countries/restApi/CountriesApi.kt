@@ -30,7 +30,7 @@ interface CountriesRestAPI {
     fun getCountryByName(@Path("country") name: String):List<Country>
 
     @GET("name/{country}")
-    fun getCountryDetail(@Path("country") name: String):List<CountryDetails>
+    fun getCountryDetail(@Path("country") name: String):CountryDetails
 }
 
 object CountriesService {

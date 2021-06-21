@@ -8,6 +8,7 @@ import eu.marcelomorais.countries.database.CountriesDataSource
 import eu.marcelomorais.countries.database.CountriesNetworkDataSource
 import eu.marcelomorais.countries.restApi.CountriesService
 import eu.marcelomorais.countries.restApi.models.Country
+import eu.marcelomorais.countries.restApi.models.CountryDetails
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import java.lang.Exception
@@ -46,7 +47,15 @@ class RemoteDataSource (
         }
     }
 
-    override suspend fun deleteCountries() {
-        // all good, nothing to do here
+    override suspend fun getCountryDetails(country: String): Outcome<CountryDetails> {
+        return withContext(ioDispatcher) {
+            val result = try {
+                Outcome.Success(apiService.create().getCountryDetail(country))
+            } catch (ex: Exception) {
+                Outcome.Error(ex)
+            }
+            result
+        }
     }
+
 }
