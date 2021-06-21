@@ -27,10 +27,10 @@ interface CountriesRestAPI {
     suspend fun getAll(): List<Country>
 
     @GET("name/{country}")
-    fun getCountryByName(@Path("country") name: String):Call<List<Country>>
+    fun getCountryByName(@Path("country") name: String):List<Country>
 
     @GET("name/{country}")
-    fun getCountryDetail(@Path("country") name: String):Call<List<CountryDetails>>
+    fun getCountryDetail(@Path("country") name: String):List<CountryDetails>
 }
 
 object CountriesService {
