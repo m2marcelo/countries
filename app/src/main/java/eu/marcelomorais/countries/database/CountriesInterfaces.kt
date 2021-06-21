@@ -8,8 +8,9 @@ import eu.marcelomorais.countries.restApi.models.CountryDetails
 interface CountriesDataSource {
     fun observerCountries(): LiveData<Outcome<List<CountriesDBModel>>>
     suspend fun getAllCountriesFromDB(): Outcome<List<CountriesDBModel>>
-    suspend fun getCountriesById(countryId: Int): Outcome<List<CountriesDBModel?>>
+    suspend fun getCountriesByName(country: String): Outcome<List<CountriesDBModel?>>
     suspend fun deleteCountries()
+    suspend fun saveCountries(countries: List<CountriesDBModel>)
 }
 
 interface CountriesNetworkDataSource {
@@ -22,5 +23,7 @@ interface CountriesNetworkDataSource {
 interface CountriesRepository {
     fun observerCountries(): LiveData<Outcome<List<CountriesDBModel>>>
     suspend fun getAllCountriesFromDB(): Outcome<List<CountriesDBModel>>
-    suspend fun getCountriesById(countryId: Int): Outcome<List<CountriesDBModel?>>
+    suspend fun getCountriesByName(country: String): Outcome<List<CountriesDBModel?>>
+    suspend fun getCountryDetails(country: String): Outcome<CountryDetails>
+    suspend fun refreshCountries()
 }

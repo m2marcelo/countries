@@ -2,6 +2,8 @@ package eu.marcelomorais.countries.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
@@ -22,8 +24,8 @@ interface CountriesDao {
      * @param countryId the id of the country
      * @return the list of CountriesDBModel objects with the countryId
      */
-    @Query("SELECT * FROM countries_database_table WHERE id = :countryId")
-    suspend fun getCountriesById(countryId: Int): List<CountriesDBModel?>
+    @Query("SELECT * FROM countries_database_table WHERE countryName = :country")
+    suspend fun getCountriesByName(country: String): List<CountriesDBModel?>
 
     /**
      * Delete database content
@@ -31,4 +33,9 @@ interface CountriesDao {
     @Query("DELETE FROM countries_database_table")
     suspend fun deleteCountries()
 
+    /**
+     * @store all countries in the database.
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun saveAll(countries: List<CountriesDBModel>)
 }

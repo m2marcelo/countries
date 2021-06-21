@@ -27,10 +27,10 @@ class LocalDataSource(
         }
     }
 
-    override suspend fun getCountriesById(countryId: Int): Outcome<List<CountriesDBModel?>> {
+    override suspend fun getCountriesByName(country: String): Outcome<List<CountriesDBModel?>> {
         return withContext(ioDispatcher) {
             return@withContext try {
-                Outcome.Success(database.getCountriesById(countryId))
+                Outcome.Success(database.getCountriesByName(country))
             } catch (exception: Exception) {
                 Outcome.Error(exception)
             }
@@ -39,5 +39,11 @@ class LocalDataSource(
 
     override suspend fun deleteCountries() {
         withContext(ioDispatcher) { database.deleteCountries() }
+    }
+
+    override suspend fun saveCountries(countries: List<CountriesDBModel>) {
+        withContext(ioDispatcher) {
+            database.saveAll(countries)
+        }
     }
 }

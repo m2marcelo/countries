@@ -12,11 +12,14 @@ data class Country(
     val flag: String?
 )
 
-fun Country.convertToDBModel() =
-    CountriesDBModel (
-        id = id ?: 0,
-        countryName = name ?: "",
-        countryCapital = capital ?: "",
-        countryRegion = region ?: "",
-        countryFlag = flag ?: ""
-    )
+fun List<Country>.convertToDBModel() : List<CountriesDBModel> {
+    return map{
+        CountriesDBModel(
+            it.id ?: 0,
+            it.name ?: "",
+            it.capital ?: "",
+            it.region ?: "",
+            it.flag ?: ""
+        )
+    }
+}
