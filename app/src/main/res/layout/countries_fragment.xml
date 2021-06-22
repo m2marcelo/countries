@@ -8,10 +8,14 @@
         android:layout_height="match_parent"
         tools:context="eu.marcelomorais.countries.MainActivity">
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/countries_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Countries Fragment" />
-
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
