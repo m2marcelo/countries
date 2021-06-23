@@ -1,35 +1,39 @@
 package eu.marcelomorais.countries.countryview
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import eu.marcelomorais.countries.database.CountriesDBModel
-import eu.marcelomorais.countries.database.CountriesDao
 import eu.marcelomorais.countries.database.CountriesRepository
-import eu.marcelomorais.countries.restApi.CountriesService
+import eu.marcelomorais.countries.repository.Outcome
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class CountriesViewModel(private val repository: CountriesRepository) : ViewModel() {
 
-    init {
-//       getAllCountries()
+    private val countriesList: LiveData<List<CountriesDBModel>> =
+        Transformations.map(repository.observerCountries()) {
+            when (it) {
+                is Outcome.Error -> {
+                    emptyList()
+                }
+                is Outcome.Success -> {
+                    it.value
+                }
+            }
     }
 
+    private val currentCountriesList: LiveData<List<CountriesDBModel>> = countriesList
 
+    init {
+       updateCountriesData()
+    }
 
-    fun getAllCountries() {
-        Log.d("CountriesViewModel", "testApi")
+    private fun updateCountriesData() {
         viewModelScope.launch {
-            try {
-                var listResult = CountriesService.create().getAll()
-                Log.d("CountriesViewModel", "testApi result = " + listResult)
-            } catch (e: Exception) {
-                Log.d("CountriesViewModel", "Exception = $e")
-            }
+            updateCountries()
         }
+    }
+
+    private suspend fun updateCountries() {
+        repository.refreshCountries()
     }
 }

@@ -33,7 +33,7 @@ class CountriesFragment : Fragment() {
         binding.countriesViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.getAllCountries()
+//        viewModel.getAllCountries()
 
         return binding.root
     }
