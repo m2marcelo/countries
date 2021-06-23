@@ -4,15 +4,17 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import eu.marcelomorais.countries.database.CountriesDao
 import eu.marcelomorais.countries.restApi.CountriesService
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class CountriesViewModel(application: Application) : AndroidViewModel(application) {
-    // TODO: Implement the ViewModel
+class CountriesViewModel(
+    val database: CountriesDao,
+    application: Application) : AndroidViewModel(application) {
 
     init {
-       getAllCountries()
+//       getAllCountries()
     }
 
     fun getAllCountries() {

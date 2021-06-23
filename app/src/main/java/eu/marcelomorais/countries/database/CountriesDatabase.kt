@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [CountriesDBModel::class], version = 1, exportSchema = false)
 abstract class CountriesDatabase : RoomDatabase() {
-    abstract val electionDao: CountriesDao
+    abstract val countriesDao: CountriesDao
 
     companion object {
 

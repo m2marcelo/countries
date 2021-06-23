@@ -9,13 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import eu.marcelomorais.countries.R
+import eu.marcelomorais.countries.database.CountriesDatabase
 import eu.marcelomorais.countries.databinding.CountriesFragmentBinding
 
 class CountriesFragment : Fragment() {
 
     private val viewModel: CountriesViewModel by lazy {
         val application = requireNotNull(this.activity).application
-        val viewModelFactory = CountriesViewModelFactory(application)
+        val dataSource = CountriesDatabase.getInstance(application).countriesDao
+        val viewModelFactory = CountriesViewModelFactory(dataSource, application)
         ViewModelProvider(this, viewModelFactory)
             .get(CountriesViewModel::class.java)
 
@@ -33,7 +35,9 @@ class CountriesFragment : Fragment() {
 
         Log.d("CountriesFragment", "onCreateView")
 
+        binding.countriesViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
         viewModel.getAllCountries()
 
         return binding.root
