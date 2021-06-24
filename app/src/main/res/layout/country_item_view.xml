@@ -16,26 +16,33 @@
 
         <ImageView
             android:id="@+id/countryFlag"
-            android:layout_width="75dp"
-            android:layout_height="60dp"
+            android:layout_width="100dp"
+            android:layout_height="85dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:contentDescription="@string/contentFlag"
+            android:textAlignment="textStart"
+            app:country_flag="@{countryItem.countryFlag}"
             app:layout_constraintBottom_toTopOf="@+id/countryName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@android:drawable/ic_menu_gallery" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/countryName"
             style="@style/country_header"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:maxLines="3"
             android:text="@{countryItem.countryName}"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/countryFlag"
             app:layout_constraintTop_toTopOf="parent" />
 

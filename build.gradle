@@ -12,7 +12,6 @@ buildscript {
         version_navigation = "2.3.5"
         version_retrofit = "2.9.0"
         version_recyclerview = "1.2.1"
-        version_glide = "4.12.0"
         version_play_services_location = "18.0.0"
         version_room = "2.3.0"
         version_androidx_legacy_support = '1.0.0'
@@ -42,6 +41,7 @@ allprojects {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
+        maven { url 'https://jitpack.io' }
     }
 }
 
