@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Country"
+            android:text="@{countryItem.countryName}"
             app:layout_constraintStart_toEndOf="@+id/countryFlag"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:text="Stockholm"
+            android:text="@{countryItem.countryCapital}"
             app:layout_constraintStart_toEndOf="@+id/capitalLabel"
             app:layout_constraintTop_toBottomOf="@+id/countryName" />
 
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:text="Europe"
+            android:text="@{countryItem.countryRegion}"
             app:layout_constraintStart_toEndOf="@+id/regionLabel"
             app:layout_constraintTop_toBottomOf="@+id/countryCapital" />
 
