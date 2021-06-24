@@ -21,7 +21,7 @@ class CountriesViewModel(private val repository: CountriesRepository) : ViewMode
             }
     }
 
-    private val currentCountriesList: LiveData<List<CountriesDBModel>> = countriesList
+    val currentCountriesList: LiveData<List<CountriesDBModel>> = countriesList
 
     init {
        updateCountriesData()

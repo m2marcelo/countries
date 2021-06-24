@@ -6,10 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import eu.marcelomorais.countries.CountriesApp
-import eu.marcelomorais.countries.R
+import eu.marcelomorais.countries.adapters.CountriesAdapter
 import eu.marcelomorais.countries.databinding.CountriesFragmentBinding
 
 class CountriesFragment : Fragment() {
@@ -18,23 +17,29 @@ class CountriesFragment : Fragment() {
                 (requireContext().applicationContext as CountriesApp).countriesRepository)
     }
 
+    private lateinit var viewDataBinding: CountriesFragmentBinding
+    private lateinit var listAdapter: CountriesAdapter
+
+
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val binding: CountriesFragmentBinding = DataBindingUtil.inflate(
+        viewDataBinding = CountriesFragmentBinding.inflate(
             inflater,
-            R.layout.countries_fragment,
             container,
             false)
 
-        Log.d("CountriesFragment", "onCreateView")
+        viewDataBinding.countriesViewModel = viewModel
 
-        binding.countriesViewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        viewDataBinding.lifecycleOwner = viewLifecycleOwner
+
+        viewDataBinding.countriesList.adapter = CountriesAdapter()
+
+        Log.d("CountriesFragment", "onCreateView")
 
 //        viewModel.getAllCountries()
 
-        return binding.root
+        return viewDataBinding.root
     }
 }
