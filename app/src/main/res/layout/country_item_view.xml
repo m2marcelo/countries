@@ -7,12 +7,16 @@
         <variable
             name="countryItem"
             type="eu.marcelomorais.countries.database.CountriesDBModel" />
+        <variable
+            name="listener"
+            type="eu.marcelomorais.countries.adapters.CountriesAdapter.CountryListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context="eu.marcelomorais.countries.MainActivity">
+        tools:context="eu.marcelomorais.countries.MainActivity"
+        android:onClick="@{()->listener.onClick(countryItem)}">
 
         <ImageView
             android:id="@+id/countryFlag"
