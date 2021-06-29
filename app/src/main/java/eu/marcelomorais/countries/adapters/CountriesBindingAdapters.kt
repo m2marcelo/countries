@@ -14,18 +14,6 @@ fun addRecyclerViewContent(recyvlerViewList: RecyclerView, items: List<Countries
     adapter.submitList(items)
 }
 
-//@BindingAdapter("app:country_flag")
-//fun getCountryFlag(view: ImageView, src: String?) {
-//    src?.let {
-//        val uri = src.toUri().buildUpon().scheme("https").build()
-//        Picasso.get()
-//            .load(uri)
-//            .error(R.drawable.ic_flag)
-//            .placeholder(R.drawable.ic_flag)
-//            .into(view)
-//    }
-//}
-
 @BindingAdapter("app:country_flag")
 fun getCountryFlag(imageView: ImageView, imgUrl: String?) {
     if (imgUrl != null) {
