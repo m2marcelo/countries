@@ -1,5 +1,6 @@
 package eu.marcelomorais.countries.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import eu.marcelomorais.countries.repository.Outcome
@@ -19,17 +20,16 @@ class RemoteDataSource (
         ) : CountriesNetworkDataSource {
 
     private val _allCountries: MutableLiveData<Outcome<List<Country>>> = MutableLiveData()
-    private val _CountryDetails: MutableLiveData<Outcome<CountryDetails>> = MutableLiveData()
+    private val _CountryDetails: MutableLiveData<Outcome<List<CountryDetails>>> = MutableLiveData()
 
 
     override fun observerCountries(): LiveData<Outcome<List<Country>>> {
         return _allCountries
     }
 
-    override fun observerCountryDetails(): LiveData<Outcome<CountryDetails>> {
+    override fun observerCountryDetails(): LiveData<Outcome<List<CountryDetails>>> {
         return _CountryDetails
     }
-
 
     override suspend fun getAllCountriesFromRest(): Outcome<List<Country>> {
         return withContext(ioDispatcher) {
@@ -54,13 +54,19 @@ class RemoteDataSource (
         }
     }
 
-    override suspend fun getCountryDetails(country: String): Outcome<CountryDetails> {
+    override suspend fun getCountryDetails(country: String): Outcome<List<CountryDetails>> {
+        Log.d("RemoteDataSource", "getCountryDetails for $country")
+
         return withContext(ioDispatcher) {
             val result = try {
+                Log.d("getCountryDetails", "try for $country")
                 Outcome.Success(apiService.create().getCountryDetail(country))
             } catch (ex: Exception) {
+                Log.d("RemoteDataSource", "Exception for $country")
+                ex.printStackTrace()
                 Outcome.Error(ex)
             }
+            _CountryDetails.postValue(result)
             result
         }
     }

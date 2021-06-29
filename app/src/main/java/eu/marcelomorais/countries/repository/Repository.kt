@@ -1,6 +1,6 @@
 package eu.marcelomorais.countries.repository
 
-import androidx.lifecycle.LiveData
+import android.util.Log
 import eu.marcelomorais.countries.database.CountriesDBModel
 import eu.marcelomorais.countries.database.CountriesRepository
 import eu.marcelomorais.countries.database.LocalDataSource
@@ -31,7 +31,8 @@ class Repository (
         }
     }
 
-    override suspend fun getCountryDetails(country: String): Outcome<CountryDetails> {
+    override suspend fun getCountryDetails(country: String): Outcome<List<CountryDetails>> {
+        Log.d("CountriesRepository", "getCountryDetails for $country")
         wrapEspressoIdlingResource {
             return withContext(ioDispatcher) {
                 remoteDataSource.getCountryDetails(country)

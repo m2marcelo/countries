@@ -15,17 +15,17 @@ interface CountriesDataSource {
 
 interface CountriesNetworkDataSource {
     fun observerCountries(): LiveData<Outcome<List<Country>>>
-    fun observerCountryDetails(): LiveData<Outcome<CountryDetails>>
+    fun observerCountryDetails(): LiveData<Outcome<List<CountryDetails>>>
     suspend fun getAllCountriesFromRest(): Outcome<List<Country>>
     suspend fun getCountriesByName(country: String): Outcome<List<Country?>>
-    suspend fun getCountryDetails(country: String): Outcome<CountryDetails>
+    suspend fun getCountryDetails(country: String): Outcome<List<CountryDetails>>
 }
 
 interface CountriesRepository {
     fun observerCountries(): LiveData<Outcome<List<CountriesDBModel>>>
-    fun observerCountryDetails(): LiveData<Outcome<CountryDetails>>
+    fun observerCountryDetails(): LiveData<Outcome<List<CountryDetails>>>
     suspend fun getAllCountriesFromDB(): Outcome<List<CountriesDBModel>>
     suspend fun getCountriesByName(country: String): Outcome<List<CountriesDBModel?>>
-    suspend fun getCountryDetails(country: String): Outcome<CountryDetails>
+    suspend fun getCountryDetails(country: String): Outcome<List<CountryDetails>>
     suspend fun refreshCountries()
 }
