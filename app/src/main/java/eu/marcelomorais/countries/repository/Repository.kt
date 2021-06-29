@@ -17,6 +17,7 @@ class Repository (
     private val ioDispatcher: CoroutineDispatcher
 ): CountriesRepository {
     override fun observerCountries() = localDataSource.observerCountries()
+    override fun observerCountryDetails() = remoteDataSource.observerCountryDetails()
 
     override suspend fun getAllCountriesFromDB(): Outcome<List<CountriesDBModel>> {
         wrapEspressoIdlingResource {

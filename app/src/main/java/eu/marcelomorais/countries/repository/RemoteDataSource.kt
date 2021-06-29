@@ -19,10 +19,17 @@ class RemoteDataSource (
         ) : CountriesNetworkDataSource {
 
     private val _allCountries: MutableLiveData<Outcome<List<Country>>> = MutableLiveData()
+    private val _CountryDetails: MutableLiveData<Outcome<CountryDetails>> = MutableLiveData()
+
 
     override fun observerCountries(): LiveData<Outcome<List<Country>>> {
         return _allCountries
     }
+
+    override fun observerCountryDetails(): LiveData<Outcome<CountryDetails>> {
+        return _CountryDetails
+    }
+
 
     override suspend fun getAllCountriesFromRest(): Outcome<List<Country>> {
         return withContext(ioDispatcher) {
