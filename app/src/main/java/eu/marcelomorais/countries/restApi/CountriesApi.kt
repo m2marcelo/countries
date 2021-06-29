@@ -8,7 +8,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.Call
 
 private const val BASE_URL = "https://restcountries.eu/rest/v2/"
 
@@ -27,10 +26,10 @@ interface CountriesRestAPI {
     suspend fun getAll(): List<Country>
 
     @GET("name/{country}")
-    fun getCountryByName(@Path("country") name: String):List<Country>
+    suspend fun getCountryByName(@Path("country") name: String):List<Country>
 
     @GET("name/{country}")
-    fun getCountryDetail(@Path("country") name: String):CountryDetails
+    suspend fun getCountryDetail(@Path("country") name: String):List<CountryDetails>
 }
 
 object CountriesService {
