@@ -54,5 +54,8 @@
         <action
             android:id="@+id/action_countryDetailsFragment_to_searchCountryFragment"
             app:destination="@id/searchCountryFragment" />
+        <argument
+            android:name="country"
+            app:argType="string" />
     </fragment>
 </navigation>
