@@ -2,6 +2,7 @@ package eu.marcelomorais.countries.countryview
 
 import android.util.Log
 import androidx.lifecycle.*
+import androidx.navigation.NavDirections
 import eu.marcelomorais.countries.database.CountriesDBModel
 import eu.marcelomorais.countries.database.CountriesRepository
 import eu.marcelomorais.countries.repository.Outcome
@@ -20,6 +21,8 @@ class CountriesViewModel(private val repository: CountriesRepository) : ViewMode
                 }
             }
     }
+    private val _navigateTo = MutableLiveData<NavDirections?>()
+    val navigateTo: LiveData<NavDirections?> = _navigateTo
 
     val currentCountriesList: LiveData<List<CountriesDBModel>> = countriesList
 
@@ -35,5 +38,14 @@ class CountriesViewModel(private val repository: CountriesRepository) : ViewMode
 
     private suspend fun updateCountries() {
         repository.refreshCountries()
+    }
+
+    fun clearNavigationLiveData() {
+        _navigateTo.value = null
+    }
+
+    fun onCountryItemClicked(country: String) {
+        _navigateTo.value = CountriesFragmentDirections
+            .actionCountriesFragmentToCountryDetailsFragment(country)
     }
 }

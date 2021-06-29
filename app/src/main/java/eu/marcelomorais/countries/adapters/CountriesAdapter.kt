@@ -9,14 +9,18 @@ import eu.marcelomorais.countries.database.CountriesDBModel
 import eu.marcelomorais.countries.databinding.CountryItemViewBinding
 
 
-class CountriesAdapter : ListAdapter <CountriesDBModel, CountriesAdapter.CountryViewHolder>(CountryDiffCallBack) {
+class CountriesAdapter(private val clickListener: CountryListener) : ListAdapter <CountriesDBModel, CountriesAdapter.CountryViewHolder>(CountryDiffCallBack) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         return CountryViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         val item = getItem(position)
-        holder.binding(item)
+        holder.binding(item, clickListener)
+    }
+
+    class CountryListener(val clickListener: (country: CountriesDBModel) -> Unit) {
+        fun onClick(country: CountriesDBModel) = clickListener(country)
     }
 
     class CountryViewHolder(val dataBind: CountryItemViewBinding) : RecyclerView.ViewHolder(dataBind.root) {
@@ -31,7 +35,8 @@ class CountriesAdapter : ListAdapter <CountriesDBModel, CountriesAdapter.Country
             )
         }
 
-        fun binding(item: CountriesDBModel) {
+        fun binding(item: CountriesDBModel, listener: CountryListener) {
+            dataBind.listener = listener
             dataBind.countryItem = item
             dataBind.executePendingBindings()
         }

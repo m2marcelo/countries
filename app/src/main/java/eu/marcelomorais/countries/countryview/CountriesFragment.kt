@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import eu.marcelomorais.countries.CountriesApp
 import eu.marcelomorais.countries.adapters.CountriesAdapter
 import eu.marcelomorais.countries.databinding.CountriesFragmentBinding
@@ -34,11 +35,19 @@ class CountriesFragment : Fragment() {
 
         viewDataBinding.lifecycleOwner = viewLifecycleOwner
 
-        viewDataBinding.countriesList.adapter = CountriesAdapter()
+        viewDataBinding.countriesList.adapter =
+            CountriesAdapter(CountriesAdapter.CountryListener {
+                viewModel.onCountryItemClicked(it.countryName)
+            })
 
         Log.d("CountriesFragment", "onCreateView")
 
-//        viewModel.getAllCountries()
+        viewModel.navigateTo.observe(viewLifecycleOwner) {
+            it?.let {
+                viewModel.clearNavigationLiveData()
+                findNavController().navigate(it)
+            }
+        }
 
         return viewDataBinding.root
     }
