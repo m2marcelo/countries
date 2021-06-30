@@ -6,9 +6,10 @@ import eu.marcelomorais.countries.database.CountriesRepository
 
 @Suppress("UNCHECKED_CAST")
 class CountryDetailsViewModelFactory  (
-        private val repository: CountriesRepository
+        private val repository: CountriesRepository,
+        private val country: String
 ) : ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel> create(modelClass: Class<T>) =
-            (CountryDetailsViewModel(repository) as T)
+            (CountryDetailsViewModel(repository, country) as T)
 }
 

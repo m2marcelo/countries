@@ -10,16 +10,17 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import eu.marcelomorais.countries.CountriesApp
 import eu.marcelomorais.countries.databinding.FragmentCountryDetailsBinding
-import org.koin.core.parameter.parametersOf
 
 class CountryDetailsFragment : Fragment() {
 
     private val countryArg: CountryDetailsFragmentArgs by navArgs()
     private lateinit var viewDataBinding: FragmentCountryDetailsBinding
 
+
     private val viewModel by viewModels<CountryDetailsViewModel> {
         CountryDetailsViewModelFactory(
-            (requireContext().applicationContext as CountriesApp).countriesRepository)
+            (requireContext().applicationContext as CountriesApp).countriesRepository,
+            countryArg.country)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +34,10 @@ class CountryDetailsFragment : Fragment() {
         viewDataBinding.vieModel = viewModel
         viewDataBinding.lifecycleOwner = viewLifecycleOwner
 
-        Log.d("CountryDetailsFragment", "countryArg = " + parametersOf(countryArg.country))
-
+        viewModel.currentCountryDetails.observe(viewLifecycleOwner) {
+            Log.d("CountryDetailsFragment", "result = ${it.first()}")
+        }
 
         return viewDataBinding.root
     }
-
 }

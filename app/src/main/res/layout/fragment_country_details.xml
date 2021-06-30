@@ -22,7 +22,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/contentFlag"
-            android:src="@android:drawable/ic_menu_gallery"
+            app:country_flag="@{vieModel.currentCountryDetails.get(0).flag}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="DetailCountryName"
+            android:text="@{vieModel.currentCountryDetails.get(0).name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bigCountryFlag" />
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Stockholm"
+            android:text="@{vieModel.currentCountryDetails.get(0).capital}"
             app:layout_constraintStart_toEndOf="@+id/detail_capital_label"
             app:layout_constraintTop_toBottomOf="@+id/detailCountryName" />
 
@@ -155,7 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:text="@{vieModel.currentCountryDetails.get(0).region}"
             app:layout_constraintStart_toEndOf="@+id/detail_region_label"
             app:layout_constraintTop_toBottomOf="@+id/detail_capital" />
 
@@ -166,7 +166,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:text="@{vieModel.currentCountryDetails.get(0).callingCodes.toString()}"
             app:layout_constraintStart_toEndOf="@+id/detail_calling_codes_label"
             app:layout_constraintTop_toBottomOf="@+id/detail_region" />
 
@@ -177,7 +177,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:text="@{vieModel.currentCountryDetails.get(0).subregion}"
             app:layout_constraintStart_toEndOf="@+id/detail_subregion_label"
             app:layout_constraintTop_toBottomOf="@+id/detail_calling_code" />
 
@@ -188,7 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:text="@{vieModel.currentCountryDetails.get(0).population}"
             app:layout_constraintStart_toEndOf="@+id/detail_population_label"
             app:layout_constraintTop_toBottomOf="@+id/detail_subregion" />
 
@@ -199,7 +199,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:text="@{vieModel.currentCountryDetails.get(0).borders.toString()}"
             app:layout_constraintStart_toEndOf="@+id/borders_label"
             app:layout_constraintTop_toBottomOf="@+id/detail_population" />
 
@@ -210,7 +210,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:text="@{vieModel.currentCountryDetails.get(0).timezones.toString()}"
             app:layout_constraintStart_toEndOf="@+id/timezone_label"
             app:layout_constraintTop_toBottomOf="@+id/detail_borders" />
 
@@ -221,7 +221,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:text="@{vieModel.currentCountryDetails.get(0).languages.toString()}"
             app:layout_constraintStart_toEndOf="@+id/language_label"
             app:layout_constraintTop_toBottomOf="@+id/detail_timezone" />
 
@@ -232,7 +232,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:text="TextView"
+            android:text="@{vieModel.currentCountryDetails.get(0).currencies.toString()}"
             app:layout_constraintStart_toEndOf="@+id/currencies_label"
             app:layout_constraintTop_toBottomOf="@+id/detail_languages" />
     </androidx.constraintlayout.widget.ConstraintLayout>
