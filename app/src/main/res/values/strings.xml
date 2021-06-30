@@ -21,5 +21,13 @@
     <string name="timezone_label">Timezone:</string>
     <string name="language_label">Languages:</string>
     <string name="currency_label">Currencies:</string>
+    <string name="currency_code">Code:</string>
+    <string name="currency_code_sample">XYZ</string>
+    <string name="currency_name">Name:</string>
+    <string name="currency_name_sample">Coin</string>
+    <string name="language_iso">ISO 639-1 code:</string>
+    <string name="language_name_label">Language name:</string>
+    <string name="language_native_label">Language native name:</string>
+
 
 </resources>

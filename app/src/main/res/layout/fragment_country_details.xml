@@ -132,7 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="80dp"
             android:text="@string/currency_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/language_label" />
@@ -214,27 +214,31 @@
             app:layout_constraintStart_toEndOf="@+id/timezone_label"
             app:layout_constraintTop_toBottomOf="@+id/detail_borders" />
 
-        <TextView
-            android:id="@+id/detail_languages"
-            style="@style/country_item_subheader"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_language"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@{viewModel.currentCountryDetails.get(0).languages.toString()}"
-            app:layout_constraintStart_toEndOf="@+id/language_label"
-            app:layout_constraintTop_toBottomOf="@+id/detail_timezone" />
+            android:layout_marginBottom="8dp"
+            app:language_items="@{viewModel.currentCountryDetails.get(0).languages}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/currencies_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/language_label" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_currency"
-            android:layout_width="409dp"
-            android:layout_height="142dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/currencies_label"
+            android:layout_marginBottom="8dp"
+            app:currency_items="@{viewModel.currentCountryDetails.get(0).currencies}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:currency_items="@{viewModel.currentCountryDetails.get(0).currencies}"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/currencies_label" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

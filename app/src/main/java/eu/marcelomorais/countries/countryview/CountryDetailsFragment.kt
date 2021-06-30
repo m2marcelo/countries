@@ -8,8 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import eu.marcelomorais.countries.CountriesApp
 import eu.marcelomorais.countries.adapters.CountryCurrencyAdapter
+import eu.marcelomorais.countries.adapters.CountryLanguageAdapter
 import eu.marcelomorais.countries.databinding.FragmentCountryDetailsBinding
 
 class CountryDetailsFragment : Fragment() {
@@ -39,7 +42,16 @@ class CountryDetailsFragment : Fragment() {
             Log.d("CountryDetailsFragment", "result = ${it.first()}")
         }
 
+        viewDataBinding.recyclerViewLanguage.adapter = CountryLanguageAdapter()
+        viewDataBinding.recyclerViewLanguage.addItemDecoration(
+            DividerItemDecoration(requireContext(),
+            LinearLayoutManager.VERTICAL)
+        )
         viewDataBinding.recyclerViewCurrency.adapter = CountryCurrencyAdapter()
+        viewDataBinding.recyclerViewCurrency.addItemDecoration(
+            DividerItemDecoration(requireContext(),
+                LinearLayoutManager.VERTICAL)
+        )
 
         return viewDataBinding.root
     }

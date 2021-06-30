@@ -8,6 +8,7 @@ import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import eu.marcelomorais.countries.R
 import eu.marcelomorais.countries.database.CountriesDBModel
 import eu.marcelomorais.countries.restApi.models.Currency
+import eu.marcelomorais.countries.restApi.models.Language
 
 @BindingAdapter("app:country_items")
 fun addRecyclerViewContent(recyvlerViewList: RecyclerView, items: List<CountriesDBModel>?) {
@@ -29,5 +30,11 @@ fun getCountryFlag(imageView: ImageView, imgUrl: String?) {
 @BindingAdapter("app:currency_items")
 fun addRecyclerViewCurrencyItems(recyclerViewList: RecyclerView, items: List<Currency>?) {
     val adapter = recyclerViewList.adapter as CountryCurrencyAdapter
+    adapter.submitList(items)
+}
+
+@BindingAdapter("app:language_items")
+fun addRecyclerViewLanguageItems(recyclerViewList: RecyclerView, items: List<Language>?) {
+    val adapter = recyclerViewList.adapter as CountryLanguageAdapter
     adapter.submitList(items)
 }
