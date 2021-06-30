@@ -3,9 +3,7 @@ package eu.marcelomorais.countries.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import eu.marcelomorais.countries.repository.Outcome
 import eu.marcelomorais.countries.database.CountriesDBModel
-import eu.marcelomorais.countries.database.CountriesDataSource
 import eu.marcelomorais.countries.database.CountriesNetworkDataSource
 import eu.marcelomorais.countries.restApi.CountriesService
 import eu.marcelomorais.countries.restApi.models.Country
@@ -56,6 +54,7 @@ class RemoteDataSource (
             } catch (ex: Exception) {
                 Outcome.Error(ex)
             }
+            _countrySearchResults.postValue(result)
             result
         }
     }
@@ -72,5 +71,4 @@ class RemoteDataSource (
             result
         }
     }
-
 }
