@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import eu.marcelomorais.countries.CountriesApp
+import eu.marcelomorais.countries.adapters.CountryCurrencyAdapter
 import eu.marcelomorais.countries.databinding.FragmentCountryDetailsBinding
 
 class CountryDetailsFragment : Fragment() {
@@ -31,12 +32,14 @@ class CountryDetailsFragment : Fragment() {
             container,
             false)
 
-        viewDataBinding.vieModel = viewModel
+        viewDataBinding.viewModel = viewModel
         viewDataBinding.lifecycleOwner = viewLifecycleOwner
 
         viewModel.currentCountryDetails.observe(viewLifecycleOwner) {
             Log.d("CountryDetailsFragment", "result = ${it.first()}")
         }
+
+        viewDataBinding.recyclerViewCurrency.adapter = CountryCurrencyAdapter()
 
         return viewDataBinding.root
     }

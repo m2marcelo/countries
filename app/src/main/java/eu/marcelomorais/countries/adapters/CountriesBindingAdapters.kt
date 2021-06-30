@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import eu.marcelomorais.countries.R
 import eu.marcelomorais.countries.database.CountriesDBModel
+import eu.marcelomorais.countries.restApi.models.Currency
 
 @BindingAdapter("app:country_items")
 fun addRecyclerViewContent(recyvlerViewList: RecyclerView, items: List<CountriesDBModel>?) {
@@ -23,4 +24,10 @@ fun getCountryFlag(imageView: ImageView, imgUrl: String?) {
             .setPlaceHolder(R.drawable.ic_flag, R.drawable.ic_flag)
             .load(imgUrl.toUri(), imageView)
     }
+}
+
+@BindingAdapter("app:currency_items")
+fun addRecyclerViewCurrencyItems(recyclerViewList: RecyclerView, items: List<Currency>?) {
+    val adapter = recyclerViewList.adapter as CountryCurrencyAdapter
+    adapter.submitList(items)
 }

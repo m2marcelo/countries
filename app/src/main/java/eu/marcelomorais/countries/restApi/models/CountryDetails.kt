@@ -2,10 +2,13 @@ package eu.marcelomorais.countries.restApi.models
 
 import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Currency(
     val code: String,
     val name: String
 )
+
+@JsonClass(generateAdapter = true)
 data class Language(
     val iso639_1: String,
     val name: String,
