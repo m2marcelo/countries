@@ -24,8 +24,16 @@ interface CountriesDao {
      * @param countryId the id of the country
      * @return the list of CountriesDBModel objects with the countryId
      */
-    @Query("SELECT * FROM countries_database_table WHERE countryName = :country")
-    suspend fun getCountriesByName(country: String): List<CountriesDBModel?>
+    @Query("SELECT * FROM countries_database_table WHERE countryName LIKE '%' || :country || '%'")
+    fun getCountriesByName(country: String?): LiveData<List<CountriesDBModel>>
+
+    /**
+     * @param countryId the id of the country
+     * @return the list of CountriesDBModel objects with the countryId
+     */
+    @Query("SELECT * FROM countries_database_table WHERE countryName LIKE '%' || :country || '%'")
+    fun getCountriesByNameSync(country: String?): List<CountriesDBModel>
+
 
     /**
      * Delete database content

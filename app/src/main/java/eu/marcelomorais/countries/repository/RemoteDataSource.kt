@@ -10,6 +10,7 @@ import eu.marcelomorais.countries.database.CountriesNetworkDataSource
 import eu.marcelomorais.countries.restApi.CountriesService
 import eu.marcelomorais.countries.restApi.models.Country
 import eu.marcelomorais.countries.restApi.models.CountryDetails
+import eu.marcelomorais.countries.restApi.models.convertToDBModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import java.lang.Exception
@@ -20,6 +21,7 @@ class RemoteDataSource (
         ) : CountriesNetworkDataSource {
 
     private val _allCountries: MutableLiveData<Outcome<List<Country>>> = MutableLiveData()
+    private val _countrySearchResults: MutableLiveData<Outcome<List<CountriesDBModel>>> = MutableLiveData()
     private val _CountryDetails: MutableLiveData<Outcome<List<CountryDetails>>> = MutableLiveData()
 
 
@@ -29,6 +31,10 @@ class RemoteDataSource (
 
     override fun observerCountryDetails(): LiveData<Outcome<List<CountryDetails>>> {
         return _CountryDetails
+    }
+
+    override fun observerSearchCountries(country: String): LiveData<Outcome<List<CountriesDBModel>>> {
+        return _countrySearchResults
     }
 
     override suspend fun getAllCountriesFromRest(): Outcome<List<Country>> {
@@ -43,10 +49,10 @@ class RemoteDataSource (
         }
     }
 
-    override suspend fun getCountriesByName(country: String): Outcome<List<Country?>> {
+    override suspend fun getCountriesByName(country: String): Outcome<List<CountriesDBModel>> {
         return withContext(ioDispatcher) {
             val result = try {
-                Outcome.Success(apiService.create().getCountryByName(country))
+                Outcome.Success(apiService.create().getCountryByName(country).convertToDBModel())
             } catch (ex: Exception) {
                 Outcome.Error(ex)
             }

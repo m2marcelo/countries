@@ -1,5 +1,6 @@
 package eu.marcelomorais.countries.database
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import eu.marcelomorais.countries.repository.Outcome
@@ -17,6 +18,12 @@ class LocalDataSource(
         }
     }
 
+    override fun observerSearchCountries(country: String): LiveData<Outcome<List<CountriesDBModel>>> {
+        return database.getCountriesByName(country).map {
+            Outcome.Success(it)
+        }
+    }
+
     override suspend fun getAllCountriesFromDB(): Outcome<List<CountriesDBModel>> {
         return withContext(ioDispatcher) {
             return@withContext try {
@@ -27,14 +34,20 @@ class LocalDataSource(
         }
     }
 
-    override suspend fun getCountriesByName(country: String): Outcome<List<CountriesDBModel?>> {
-        return withContext(ioDispatcher) {
-            return@withContext try {
-                Outcome.Success(database.getCountriesByName(country))
-            } catch (exception: Exception) {
-                Outcome.Error(exception)
-            }
-        }
+    override suspend fun getCountriesByName(country: String): Outcome<List<CountriesDBModel>> {
+//        Log.d("CountriesDataSource getCountriesByName", "$country")
+//
+//        return withContext(ioDispatcher) {
+//            return@withContext try {
+//                Log.d("CountriesDataSource try ", "$country")
+//                Outcome.Success(database.getCountriesByNameSync(country))
+//            } catch (exception: Exception) {
+//                Log.d("CountriesDataSource exception ", "$country")
+//                exception.printStackTrace()
+//                Outcome.Error(exception)
+//            }
+//        }
+        return Outcome.Error(IllegalStateException("This is not stored in localdb"))
     }
 
     override suspend fun deleteCountries() {

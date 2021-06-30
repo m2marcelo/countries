@@ -1,6 +1,7 @@
 package eu.marcelomorais.countries.repository
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import eu.marcelomorais.countries.database.CountriesDBModel
 import eu.marcelomorais.countries.database.CountriesRepository
 import eu.marcelomorais.countries.database.LocalDataSource
@@ -18,6 +19,7 @@ class Repository (
 ): CountriesRepository {
     override fun observerCountries() = localDataSource.observerCountries()
     override fun observerCountryDetails() = remoteDataSource.observerCountryDetails()
+    override fun observerSearchCountries(country: String) = remoteDataSource.observerSearchCountries(country)
 
     override suspend fun getAllCountriesFromDB(): Outcome<List<CountriesDBModel>> {
         wrapEspressoIdlingResource {
@@ -25,9 +27,10 @@ class Repository (
         }
     }
 
-    override suspend fun getCountriesByName(country: String): Outcome<List<CountriesDBModel?>> {
+    override suspend fun getCountriesByName(country: String): Outcome<List<CountriesDBModel>> {
+        Log.d("CountriesRepository getCountriesByName", "$country")
         wrapEspressoIdlingResource {
-            return localDataSource.getCountriesByName(country)
+            return remoteDataSource.getCountriesByName(country)
         }
     }
 
