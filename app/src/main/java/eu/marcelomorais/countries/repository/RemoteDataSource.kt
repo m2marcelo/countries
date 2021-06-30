@@ -55,14 +55,10 @@ class RemoteDataSource (
     }
 
     override suspend fun getCountryDetails(country: String): Outcome<List<CountryDetails>> {
-        Log.d("RemoteDataSource", "getCountryDetails for $country")
-
         return withContext(ioDispatcher) {
             val result = try {
-                Log.d("getCountryDetails", "try for $country")
                 Outcome.Success(apiService.create().getCountryDetail(country))
             } catch (ex: Exception) {
-                Log.d("RemoteDataSource", "Exception for $country")
                 ex.printStackTrace()
                 Outcome.Error(ex)
             }
