@@ -1,14 +1,13 @@
 package eu.marcelomorais.countries.countryview
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import eu.marcelomorais.countries.database.CountriesRepository
 
-class SearchCountryViewModelFactory(val app: Application) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SearchCountryViewModel::class.java)) {
-            return SearchCountryViewModel(app) as T
-        }
-        throw IllegalArgumentException("Unable to construct viewmodel")
-    }
+@Suppress("UNCHECKED_CAST")
+class SearchCountryViewModelFactory (
+    private val repository: CountriesRepository
+) : ViewModelProvider.NewInstanceFactory() {
+    override fun <T : ViewModel> create(modelClass: Class<T>) =
+        (SearchCountryViewModel(repository) as T)
 }

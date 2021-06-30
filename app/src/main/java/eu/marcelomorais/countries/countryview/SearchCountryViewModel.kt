@@ -1,49 +1,62 @@
 package eu.marcelomorais.countries.countryview
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import eu.marcelomorais.countries.restApi.CountriesService
-import eu.marcelomorais.countries.restApi.models.Country
-import eu.marcelomorais.countries.utils.SingleLiveEvent
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.*
+import androidx.navigation.NavDirections
+import eu.marcelomorais.countries.database.CountriesDBModel
+import eu.marcelomorais.countries.database.CountriesRepository
+import eu.marcelomorais.countries.repository.Outcome
+import kotlinx.coroutines.launch
 
-class SearchCountryViewModel (application: Application) : AndroidViewModel(application) {
-    // TODO: Implement the ViewModel
+
+class SearchCountryViewModel(private val repository: CountriesRepository) : ViewModel() {
     private val _countryName = MutableLiveData("")
     val countryName: MutableLiveData<String> = _countryName
 
-    fun searchCountry() {
-        Log.d("SearchCountryViewModel", "getCurrentCountry countryName = " + countryName.value)
-        if (countryName.value == "") {
-            Log.d("searchCountry", "error country name null")
-            return
+    private val searchCountriesList: LiveData<List<CountriesDBModel>> =
+        Transformations.map(repository.observerSearchCountries(countryName.value.toString())) {
+            when (it) {
+                is Outcome.Error -> {
+                    emptyList()
+                }
+                is Outcome.Success -> {
+                    Log.d("countriesList trans", "Success")
+                    it.value
+                }
+            }
         }
 
-        val country : String = countryName.value.toString()
+    val currentSearchList: LiveData<List<CountriesDBModel>> = searchCountriesList
 
-        val apiInterface = country?.let { CountriesService.create().getCountryByName(it) }
+    private val _navigateTo = MutableLiveData<NavDirections?>()
+    val navigateTo: LiveData<NavDirections?> = _navigateTo
 
-        apiInterface.enqueue(object : Callback<List<Country>> {
-            override fun onResponse(
-                call: Call<List<Country>>?,
-                response: Response<List<Country>>?
-            ) {
-                if (response?.body() != null)
-                    Log.d("SearchCountryViewModel", "testApi result = " + response.body())
-                else
-                    Log.d("SearchCountryViewModel", "response?.body() $response")
+    fun searchCountries() {
+        val country: String = countryName.value.toString()
+
+        Log.d("SearchCountryViewModel", "country = $country")
+
+        country?.let {
+            viewModelScope.launch {
+                remoteSearchCountries(it)
             }
-
-            override fun onFailure(call: Call<List<Country>>?, t: Throwable?) {
-                Log.d("SearchCountryViewModel onFailure", "falhou Call -> " + call)
-                Log.d("SearchCountryViewModel onFailure", "falhou Throwable -> " + call + t)
-            }
-        })
+        }
     }
 
+    private suspend fun remoteSearchCountries(countryName: String) {
+        Log.d("SearchCountryViewModel", "remoteSearchCountries = $countryName")
+        repository.getCountriesByName(countryName)
+        Log.d("SearchCountryViewModel", "currentSearchList  = ${currentSearchList.value}")
+    }
 
+    fun clearNavigationLiveData() {
+        _navigateTo.value = null
+    }
+
+    fun onCountryItemClicked(country: String) {
+        _navigateTo.value = SearchCountryFragmentDirections
+            .actionSearchCountryFragmentToCountryDetailsFragment(country)
+    }
 }
+
+
