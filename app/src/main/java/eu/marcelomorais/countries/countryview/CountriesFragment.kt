@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import eu.marcelomorais.countries.CountriesApp
 import eu.marcelomorais.countries.adapters.CountriesAdapter
 import eu.marcelomorais.countries.databinding.CountriesFragmentBinding
@@ -19,8 +21,6 @@ class CountriesFragment : Fragment() {
     }
 
     private lateinit var viewDataBinding: CountriesFragmentBinding
-    private lateinit var listAdapter: CountriesAdapter
-
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -40,7 +40,10 @@ class CountriesFragment : Fragment() {
                 viewModel.onCountryItemClicked(it.countryName)
             })
 
-        Log.d("CountriesFragment", "onCreateView")
+        viewDataBinding.countriesList.addItemDecoration(
+            DividerItemDecoration(requireContext(),
+                LinearLayoutManager.VERTICAL)
+        )
 
         viewModel.navigateTo.observe(viewLifecycleOwner) {
             it?.let {
