@@ -25,7 +25,11 @@
         android:id="@+id/myCountryFragment"
         android:name="eu.marcelomorais.countries.countryview.MyCountryFragment"
         android:label="my_country_fragment"
-        tools:layout="@layout/my_country_fragment" />
+        tools:layout="@layout/my_country_fragment" >
+        <action
+            android:id="@+id/action_myCountryFragment_to_countryDetailsFragment"
+            app:destination="@id/countryDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchCountryFragment"
         android:name="eu.marcelomorais.countries.countryview.SearchCountryFragment"
@@ -57,5 +61,8 @@
         <argument
             android:name="country"
             app:argType="string" />
+        <action
+            android:id="@+id/action_countryDetailsFragment_to_myCountryFragment"
+            app:destination="@id/myCountryFragment" />
     </fragment>
 </navigation>
