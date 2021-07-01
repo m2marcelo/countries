@@ -8,12 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import eu.marcelomorais.countries.CountriesApp
 import eu.marcelomorais.countries.R
-import eu.marcelomorais.countries.databinding.CountriesFragmentBinding
 import eu.marcelomorais.countries.databinding.MyCountryFragmentBinding
 import eu.marcelomorais.countries.restApi.models.CurrentCountry
 import eu.marcelomorais.countries.utils.LocationUtils
@@ -30,7 +28,6 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
     private val permissionUtil = PermissionHandler(this)
     private val locationUtil = LocationUtils(this)
     private lateinit var viewDataBinding: MyCountryFragmentBinding
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,6 +46,12 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
         viewModel.myCountryInfo.observe(viewLifecycleOwner){
         }
 
+        viewModel.myCountryDestinations.observe(viewLifecycleOwner) {
+            it?.let {
+                viewModel.clearMyCountryNavigationLiveData()
+                findNavController().navigate(it)
+            }
+        }
 
         Log.d("MyCountryFragment", "onCreateView")
 
