@@ -34,6 +34,9 @@
     <string name="my_country_name"> My country</string><string />
     <string name="show_my_country_details">Show my country details</string>
     <string name="show_my_caountry_map">Show my country in the map</string>
+    <string name="globe_image">A globe image</string>
+    <string name="country_list_label">Countries list</string>
+    <string name="country_instructions">Scroll and then choose a country, tap on it for more information about it.</string>
 
 
 </resources>
