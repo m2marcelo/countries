@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_myCountryFragment_to_countryDetailsFragment"
             app:destination="@id/countryDetailsFragment" />
+        <action
+            android:id="@+id/action_myCountryFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchCountryFragment"
@@ -64,5 +67,17 @@
         <action
             android:id="@+id/action_countryDetailsFragment_to_myCountryFragment"
             app:destination="@id/myCountryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="eu.marcelomorais.countries.countryview.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_myCountryFragment"
+            app:destination="@id/myCountryFragment" />
+        <argument
+            android:name="country"
+            app:argType="string" />
     </fragment>
 </navigation>
