@@ -37,7 +37,7 @@ xmlns:tools="http://schemas.android.com/tools">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_country_label"
-        app:srcCompat="@drawable/ic_flag" />
+        app:country_flag="@{viewModel.myCountryInfo.get(0).countryFlag}" />
 
     <TextView
         android:id="@+id/my_country_name"
@@ -47,7 +47,7 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/my_country_name"
+        android:text="@{viewModel.myCountryInfo.get(0).countryName}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
