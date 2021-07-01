@@ -9,42 +9,47 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import eu.marcelomorais.countries.CountriesApp
 import eu.marcelomorais.countries.R
 import eu.marcelomorais.countries.databinding.CountriesFragmentBinding
+import eu.marcelomorais.countries.databinding.MyCountryFragmentBinding
 import eu.marcelomorais.countries.restApi.models.CurrentCountry
 import eu.marcelomorais.countries.utils.LocationUtils
 import eu.marcelomorais.countries.utils.PermissionHandler
 
-class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, LocationUtils.LocationListener  {
+class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, LocationUtils.LocationListener {
 
-    private val viewModel: MyCountryViewModel by lazy {
-        val application = requireNotNull(this.activity).application
-        val viewModelFactory = MyCountryViewModelFactory(application)
-        ViewModelProvider(this, viewModelFactory)
-            .get(MyCountryViewModel::class.java)
-
+    private val viewModel by viewModels<MyCountryViewModel> {
+        MyCountryViewModelFactory(
+            (requireContext().applicationContext as CountriesApp).countriesRepository
+        )
     }
 
     private val permissionUtil = PermissionHandler(this)
     private val locationUtil = LocationUtils(this)
+    private lateinit var viewDataBinding: MyCountryFragmentBinding
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
 
-        val binding: CountriesFragmentBinding = DataBindingUtil.inflate(
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        viewDataBinding = MyCountryFragmentBinding.inflate(
             inflater,
-            R.layout.countries_fragment,
             container,
             false)
 
+        viewDataBinding.viewModel = viewModel
+        viewDataBinding.lifecycleOwner = viewLifecycleOwner
+
+
         Log.d("MyCountryFragment", "onCreateView")
 
-        binding.lifecycleOwner = viewLifecycleOwner
-//        binding.viewModel = viewModel
-
-        return binding.root
+        return viewDataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,7 +68,11 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
     }
 
     override fun onPermissionDenied() {
-        Toast.makeText(requireContext(), getString(R.string.error_permission_denied), Toast.LENGTH_LONG).show()
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.error_permission_denied),
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     override fun onCurrentLocationReady(location: CurrentCountry) {
