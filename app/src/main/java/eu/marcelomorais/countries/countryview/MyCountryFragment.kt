@@ -46,6 +46,9 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
         viewDataBinding.viewModel = viewModel
         viewDataBinding.lifecycleOwner = viewLifecycleOwner
 
+        viewModel.myCountryInfo.observe(viewLifecycleOwner){
+        }
+
 
         Log.d("MyCountryFragment", "onCreateView")
 
