@@ -29,6 +29,11 @@
     <string name="language_name_label">Language name:</string>
     <string name="language_native_label">Language native name:</string>
     <string name="results">Search results:</string>
+    <string name="my_location_greeting">According to your current location you are in:</string>
+    <string name="current_country_flag">Current country flag image</string>
+    <string name="my_country_name"> My country</string><string />
+    <string name="show_my_country_details">Show my country details</string>
+    <string name="show_my_caountry_map">Show my country in the map</string>
 
 
 </resources>
