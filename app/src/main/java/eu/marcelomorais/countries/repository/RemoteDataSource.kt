@@ -31,7 +31,7 @@ class RemoteDataSource (
         return _CountryDetails
     }
 
-    override fun observerSearchCountries(country: String): LiveData<Outcome<List<CountriesDBModel>>> {
+    override fun observerSearchCountries(): LiveData<Outcome<List<CountriesDBModel>>> {
         return _countrySearchResults
     }
 

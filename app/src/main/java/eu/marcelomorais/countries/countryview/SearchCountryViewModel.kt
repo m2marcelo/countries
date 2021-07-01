@@ -14,7 +14,7 @@ class SearchCountryViewModel(private val repository: CountriesRepository) : View
     val countryName: MutableLiveData<String> = _countryName
 
     private val searchCountriesList: LiveData<List<CountriesDBModel>> =
-        Transformations.map(repository.observerSearchCountries(countryName.value.toString())) {
+        Transformations.map(repository.observerSearchCountries()) {
             when (it) {
                 is Outcome.Error -> {
                     emptyList()

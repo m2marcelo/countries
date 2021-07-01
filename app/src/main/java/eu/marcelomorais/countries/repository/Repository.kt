@@ -17,7 +17,7 @@ class Repository (
 ): CountriesRepository {
     override fun observerCountries() = localDataSource.observerCountries()
     override fun observerCountryDetails() = remoteDataSource.observerCountryDetails()
-    override fun observerSearchCountries(country: String) = remoteDataSource.observerSearchCountries(country)
+    override fun observerSearchCountries() = remoteDataSource.observerSearchCountries()
 
     override suspend fun getAllCountriesFromDB(): Outcome<List<CountriesDBModel>> {
         wrapEspressoIdlingResource {
