@@ -15,6 +15,9 @@ class MyCountryViewModel (private val repository: CountriesRepository) : ViewMod
     private val _myCountryDestinations = MutableLiveData<NavDirections?>()
     val myCountryDestinations: LiveData<NavDirections?> = _myCountryDestinations
 
+    private var _currentCountry= CurrentCountry("", 0.0, 0.0)
+
+
     private val myCountryLiveData: LiveData<List<CountriesDBModel>> =
         Transformations.map(repository.observerSearchCountries()) {
             when (it) {
@@ -32,6 +35,7 @@ class MyCountryViewModel (private val repository: CountriesRepository) : ViewMod
 
     fun getCurrentCountry(country: CurrentCountry) {
         Log.d("MyCountryViewModel", "getCurrentCountry")
+        _currentCountry = country
         viewModelScope.launch {
             remoteGetCurrentData(country.countryName)
         }
@@ -48,10 +52,18 @@ class MyCountryViewModel (private val repository: CountriesRepository) : ViewMod
 
     fun onNavigateToCountryDetails() {
         if(null != myCountryInfo.value?.get(0)) {
-            val country: String = myCountryInfo.value!!.get(0).countryName
+            val country: String = myCountryInfo.value!![0].countryName
             _myCountryDestinations.value = MyCountryFragmentDirections
                 .actionMyCountryFragmentToCountryDetailsFragment(country)
         }
+    }
 
+    fun onNavigateToMapFragment() {
+        if( null != myCountryInfo.value?.get(0) ) {
+            val country: String = myCountryInfo.value!![0].countryName
+
+            _myCountryDestinations.value = MyCountryFragmentDirections
+                .actionMyCountryFragmentToMapsFragment(_currentCountry)
+        }
     }
 }

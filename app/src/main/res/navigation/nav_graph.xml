@@ -77,7 +77,7 @@
             android:id="@+id/action_mapsFragment_to_myCountryFragment"
             app:destination="@id/myCountryFragment" />
         <argument
-            android:name="country"
-            app:argType="string" />
+            android:name="currentCountry"
+            app:argType="eu.marcelomorais.countries.restApi.models.CurrentCountry" />
     </fragment>
 </navigation>

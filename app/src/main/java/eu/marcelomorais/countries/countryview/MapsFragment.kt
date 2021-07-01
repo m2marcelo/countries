@@ -3,9 +3,11 @@ package eu.marcelomorais.countries.countryview
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -15,6 +17,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import eu.marcelomorais.countries.R
 
 class MapsFragment : Fragment() {
+    private val countryArg: MapsFragmentArgs by navArgs()
 
     private val callback = OnMapReadyCallback { googleMap ->
         /**
@@ -26,9 +29,9 @@ class MapsFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val currentCountry = LatLng(countryArg.currentCountry.latitude, countryArg.currentCountry.longitude)
+        googleMap.addMarker(MarkerOptions().position(currentCountry).title("Marker in ${countryArg.currentCountry.countryName}"))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentCountry))
     }
 
     override fun onCreateView(

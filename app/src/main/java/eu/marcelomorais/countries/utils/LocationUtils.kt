@@ -52,7 +52,7 @@ class LocationUtils(private var handler: LocationUtils.LocationListener?) {
         val geocoder = Geocoder(context, Locale.getDefault())
         return geocoder.getFromLocation(location.latitude, location.longitude, 1)
             .map { address ->
-                CurrentCountry(address.countryName)
+                CurrentCountry(address.countryName, address.latitude, address.longitude)
             }
             .first()
     }
