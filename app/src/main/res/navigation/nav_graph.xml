@@ -13,13 +13,25 @@
         tools:layout="@layout/fragment_launch" >
         <action
             android:id="@+id/action_launchFragment_to_myCountryFragment"
-            app:destination="@id/myCountryFragment" />
+            app:destination="@id/myCountryFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_launchFragment_to_searchCountryFragment"
-            app:destination="@id/searchCountryFragment" />
+            app:destination="@id/searchCountryFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_launchFragment_to_countriesFragment"
-            app:destination="@id/countriesFragment" />
+            app:destination="@id/countriesFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/myCountryFragment"
@@ -28,10 +40,18 @@
         tools:layout="@layout/my_country_fragment" >
         <action
             android:id="@+id/action_myCountryFragment_to_countryDetailsFragment"
-            app:destination="@id/countryDetailsFragment" />
+            app:destination="@id/countryDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_myCountryFragment_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
+            app:destination="@id/mapsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/searchCountryFragment"
@@ -40,7 +60,11 @@
         tools:layout="@layout/search_country_fragment" >
         <action
             android:id="@+id/action_searchCountryFragment_to_countryDetailsFragment"
-            app:destination="@id/countryDetailsFragment" />
+            app:destination="@id/countryDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/countriesFragment"
@@ -49,7 +73,11 @@
         tools:layout="@layout/countries_fragment" >
         <action
             android:id="@+id/action_countriesFragment_to_countryDetailsFragment"
-            app:destination="@id/countryDetailsFragment" />
+            app:destination="@id/countryDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/countryDetailsFragment"
@@ -57,16 +85,28 @@
         android:label="CountryDetailsFragment" >
         <action
             android:id="@+id/action_countryDetailsFragment_to_countriesFragment"
-            app:destination="@id/countriesFragment" />
+            app:destination="@id/countriesFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_countryDetailsFragment_to_searchCountryFragment"
-            app:destination="@id/searchCountryFragment" />
+            app:destination="@id/searchCountryFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
         <argument
             android:name="country"
             app:argType="string" />
         <action
             android:id="@+id/action_countryDetailsFragment_to_myCountryFragment"
-            app:destination="@id/myCountryFragment" />
+            app:destination="@id/myCountryFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -75,7 +115,11 @@
         tools:layout="@layout/fragment_maps" >
         <action
             android:id="@+id/action_mapsFragment_to_myCountryFragment"
-            app:destination="@id/myCountryFragment" />
+            app:destination="@id/myCountryFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
         <argument
             android:name="currentCountry"
             app:argType="eu.marcelomorais.countries.restApi.models.CurrentCountry" />
