@@ -8,7 +8,7 @@
     <string name="btn_text_search_country">Search Country</string>
     <string name="error_permission_denied">Error. The location permission for this app as not granted!</string>
     <string name="search_label">Search for a country</string>
-    <string name="search_instructions_label">Type the name or part of the name for the country you want to find:</string>
+    <string name="search_instructions_label">Type the name, part of the name or other info related to the country you want to find:</string>
     <string name="input_country_hint">Type a country name, like Sweden</string>
     <string name="btn_search_label">Search</string>
     <string name="contentFlag">Country flag</string>
@@ -38,6 +38,7 @@
     <string name="globe_image">A globe image</string>
     <string name="country_list_label">Countries list</string>
     <string name="country_instructions">Scroll and then choose a country, tap on it for more information about it.</string>
+    <string name="search_error">No country found based on the input</string>
 
 
 </resources>

@@ -1,6 +1,5 @@
 package eu.marcelomorais.countries.countryview
 
-import android.util.Log
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
 import eu.marcelomorais.countries.database.CountriesDBModel
@@ -20,7 +19,6 @@ class SearchCountryViewModel(private val repository: CountriesRepository) : View
                     emptyList()
                 }
                 is Outcome.Success -> {
-                    Log.d("countriesList trans", "Success")
                     it.value
                 }
                 is Outcome.Loading -> {
@@ -34,22 +32,34 @@ class SearchCountryViewModel(private val repository: CountriesRepository) : View
     private val _navigateTo = MutableLiveData<NavDirections?>()
     val navigateTo: LiveData<NavDirections?> = _navigateTo
 
+    private val _loading = MutableLiveData<Boolean>(true)
+    val loading: LiveData<Boolean> = _loading
+
+    var listSize = currentSearchList.value?.size
+    private val _resultSize = MutableLiveData<Int>(-1)
+    val resultSize: LiveData<Int> = _resultSize
+
+    init {
+        showProgressBar(false)
+    }
+
     fun searchCountries() {
         val country: String = countryName.value.toString()
+        _resultSize.postValue(-1)
 
-        Log.d("SearchCountryViewModel", "country = $country")
-
+        showProgressBar(true)
         country?.let {
             viewModelScope.launch {
                 remoteSearchCountries(it)
+                listSize = currentSearchList.value?.size
+                _resultSize.postValue(listSize)
+                showProgressBar(false)
             }
         }
     }
 
     private suspend fun remoteSearchCountries(countryName: String) {
-        Log.d("SearchCountryViewModel", "remoteSearchCountries = $countryName")
         repository.getCountriesByName(countryName)
-        Log.d("SearchCountryViewModel", "currentSearchList  = ${currentSearchList.value}")
     }
 
     fun clearNavigationLiveData() {
@@ -59,6 +69,10 @@ class SearchCountryViewModel(private val repository: CountriesRepository) : View
     fun onCountryItemClicked(country: String) {
         _navigateTo.value = SearchCountryFragmentDirections
             .actionSearchCountryFragmentToCountryDetailsFragment(country)
+    }
+
+    fun showProgressBar(value: Boolean) {
+        _loading.postValue(value)
     }
 }
 

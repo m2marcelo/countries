@@ -106,5 +106,26 @@ fun showProgressBar(view: Button, loadingData: LiveData<Boolean?>) {
     }
 }
 
+@BindingAdapter("android:show_error")
+fun showError(view: TextView, listResult: LiveData<Int?>) {
+    listResult.value.let {
+        if (0 == it) {
+            view.fadeIn()
+        } else {
+            view.fadeOut()
+        }
+    }
+}
 
-
+@BindingAdapter("android:show_search_label")
+fun showSearchLabel(view: TextView, listResult: LiveData<Int?>) {
+    listResult.value.let {
+        if (it != null) {
+            if (it > 0) {
+                view.fadeIn()
+            } else {
+                view.fadeOut()
+            }
+        }
+    }
+}

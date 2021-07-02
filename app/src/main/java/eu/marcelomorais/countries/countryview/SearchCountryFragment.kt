@@ -48,6 +48,12 @@ class SearchCountryFragment : Fragment() {
         viewModel.currentSearchList.observe(viewLifecycleOwner){
         }
 
+        viewModel.resultSize.observe(viewLifecycleOwner) {
+        }
+
+        viewModel.loading.observe(viewLifecycleOwner){
+        }
+
         viewModel.navigateTo.observe(viewLifecycleOwner) {
             it?.let {
                 viewModel.clearNavigationLiveData()

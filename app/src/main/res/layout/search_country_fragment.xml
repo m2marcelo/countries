@@ -67,13 +67,40 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_country_name" />
 
+        <ProgressBar
+            android:id="@+id/search_loading"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            android:visibility="invisible"
+            android:show_progress="@{viewModel.loading}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_search" />
+
+        <TextView
+            android:id="@+id/search_error_label"
+            style="@style/search_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:show_error="@{viewModel.resultSize}"
+            android:text="@string/search_error"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_search" />
+
         <TextView
             android:id="@+id/search_result_label"
             style="@style/country_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="42dp"
+            android:visibility="invisible"
+            android:show_search_label="@{viewModel.resultSize}"
             android:text="@string/results"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_search" />
