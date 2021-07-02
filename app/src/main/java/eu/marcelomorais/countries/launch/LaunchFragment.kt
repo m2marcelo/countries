@@ -6,14 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.findNavController
 import eu.marcelomorais.countries.R
 import eu.marcelomorais.countries.databinding.FragmentLaunchBinding
+import eu.marcelomorais.countries.utils.NetworkConnection
 
 class LaunchFragment : Fragment() {
 
-    private  lateinit var binding: FragmentLaunchBinding
+    private lateinit var binding: FragmentLaunchBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,23 +30,41 @@ class LaunchFragment : Fragment() {
         binding.btnShowMyCountry.setOnClickListener { navigateToMyCountry() }
         binding.btnSearchCountry.setOnClickListener { navigateToSearchCountry() }
 
-
         return binding.root
     }
 
+    private fun showNetworkError() {
+        Toast.makeText(
+            requireContext(),
+            R.string.network_error,
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
     private fun navigateToSearchCountry() {
-        this.findNavController().navigate(LaunchFragmentDirections
-            .actionLaunchFragmentToSearchCountryFragment())
+        if(NetworkConnection(requireContext()).isConnected()) {
+            this.findNavController().navigate(LaunchFragmentDirections
+                .actionLaunchFragmentToSearchCountryFragment())
+        } else {
+            showNetworkError()
+        }
     }
 
     private fun navigateToMyCountry() {
-        this.findNavController().navigate(LaunchFragmentDirections
-            .actionLaunchFragmentToMyCountryFragment())
+        if(NetworkConnection(requireContext()).isConnected()) {
+            this.findNavController().navigate(LaunchFragmentDirections
+                .actionLaunchFragmentToMyCountryFragment())
+        } else {
+            showNetworkError()
+        }
     }
 
     private fun navigateToAllCountries() {
-        Log.d("LaunchFragment", "navigateToAllCountries")
-        this.findNavController().navigate(LaunchFragmentDirections
-            .actionLaunchFragmentToCountriesFragment())
+        if(NetworkConnection(requireContext()).isConnected()) {
+            this.findNavController().navigate(LaunchFragmentDirections
+                .actionLaunchFragmentToCountriesFragment())
+        } else {
+            showNetworkError()
+        }
     }
 }
