@@ -1,11 +1,15 @@
 package eu.marcelomorais.countries.countryview
 
 import android.util.Log
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
+import eu.marcelomorais.countries.R
 import eu.marcelomorais.countries.database.CountriesDBModel
 import eu.marcelomorais.countries.database.CountriesRepository
 import eu.marcelomorais.countries.repository.Outcome
+import eu.marcelomorais.countries.utils.NetworkConnection
 import kotlinx.coroutines.launch
 
 class CountriesViewModel(private val repository: CountriesRepository) : ViewModel() {
@@ -34,10 +38,9 @@ class CountriesViewModel(private val repository: CountriesRepository) : ViewMode
 
     init {
         showProgressBar(true)
-        updateCountriesData()
     }
 
-    private fun updateCountriesData() {
+    fun updateCountriesData() {
         showProgressBar(true)
         viewModelScope.launch {
             updateCountries()

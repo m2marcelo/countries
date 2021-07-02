@@ -6,13 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.marcelomorais.countries.CountriesApp
+import eu.marcelomorais.countries.R
 import eu.marcelomorais.countries.adapters.CountriesAdapter
 import eu.marcelomorais.countries.databinding.CountriesFragmentBinding
+import eu.marcelomorais.countries.utils.NetworkConnection
 
 class CountriesFragment : Fragment() {
     private val viewModel by viewModels<CountriesViewModel> {
@@ -37,7 +41,11 @@ class CountriesFragment : Fragment() {
 
         viewDataBinding.countriesList.adapter =
             CountriesAdapter(CountriesAdapter.CountryListener {
-                viewModel.onCountryItemClicked(it.countryName)
+                if(NetworkConnection(requireContext()).isConnected()) {
+                    viewModel.onCountryItemClicked(it.countryName)
+                } else {
+                    showNetworkError()
+                }
             })
 
         viewDataBinding.countriesList.addItemDecoration(
@@ -55,6 +63,20 @@ class CountriesFragment : Fragment() {
         viewModel.loading.observe(viewLifecycleOwner) {
         }
 
+        if(NetworkConnection(requireContext()).isConnected()) {
+            viewModel.updateCountriesData()
+        } else {
+            showNetworkError()
+        }
+
         return viewDataBinding.root
+    }
+
+    private fun showNetworkError() {
+        Toast.makeText(
+            requireContext(),
+            R.string.network_error,
+            Toast.LENGTH_LONG
+        ).show()
     }
 }
