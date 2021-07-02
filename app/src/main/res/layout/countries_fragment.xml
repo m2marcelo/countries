@@ -38,6 +38,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_world_svg" />
 
+        <ProgressBar
+            android:id="@+id/countries_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            android:visibility="invisible"
+            android:show_progress="@{countriesViewModel.loading}"
+            app:layout_constraintStart_toEndOf="@+id/img_list"/> />
+
         <TextView
             android:id="@+id/label_countries_result_list"
             style="@style/header_style"

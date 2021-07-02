@@ -52,6 +52,9 @@ class CountriesFragment : Fragment() {
             }
         }
 
+        viewModel.loading.observe(viewLifecycleOwner) {
+        }
+
         return viewDataBinding.root
     }
 }

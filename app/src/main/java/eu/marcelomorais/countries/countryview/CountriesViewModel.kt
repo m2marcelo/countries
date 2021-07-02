@@ -27,15 +27,21 @@ class CountriesViewModel(private val repository: CountriesRepository) : ViewMode
     private val _navigateTo = MutableLiveData<NavDirections?>()
     val navigateTo: LiveData<NavDirections?> = _navigateTo
 
+    private val _loading = MutableLiveData<Boolean>(true)
+    val loading: LiveData<Boolean> = _loading
+
     val currentCountriesList: LiveData<List<CountriesDBModel>> = countriesList
 
     init {
-       updateCountriesData()
+        showProgressBar(true)
+        updateCountriesData()
     }
 
     private fun updateCountriesData() {
+        showProgressBar(true)
         viewModelScope.launch {
             updateCountries()
+            showProgressBar(false)
         }
     }
 
@@ -50,5 +56,9 @@ class CountriesViewModel(private val repository: CountriesRepository) : ViewMode
     fun onCountryItemClicked(country: String) {
         _navigateTo.value = CountriesFragmentDirections
             .actionCountriesFragmentToCountryDetailsFragment(country)
+    }
+
+    fun showProgressBar(value: Boolean) {
+        _loading.postValue(value)
     }
 }
