@@ -18,7 +18,7 @@ class MyCountryViewModel (private val repository: CountriesRepository) : ViewMod
     private var _currentCountry= CurrentCountry("", 0.0, 0.0)
 
     private val myCountryLiveData: LiveData<List<CountriesDBModel>> =
-        Transformations.map(repository.observerSearchCountries()) {
+        Transformations.map(repository.observerMyCountry()) {
             when (it) {
                 is Outcome.Error -> {
                     emptyList()
@@ -53,7 +53,7 @@ class MyCountryViewModel (private val repository: CountriesRepository) : ViewMod
 
     private suspend fun remoteGetCurrentData(countryName: String) {
         Log.d("MyCountryViewModel", "remoteGetCurrentData = $countryName")
-        repository.getCountriesByName(countryName)
+        repository.getMyCountry(countryName)
     }
 
     fun clearMyCountryNavigationLiveData() {

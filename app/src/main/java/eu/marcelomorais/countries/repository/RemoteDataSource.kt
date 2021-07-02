@@ -20,6 +20,7 @@ class RemoteDataSource (
 
     private val _allCountries: MutableLiveData<Outcome<List<Country>>> = MutableLiveData()
     private val _countrySearchResults: MutableLiveData<Outcome<List<CountriesDBModel>>> = MutableLiveData()
+    private val _myCountryResult: MutableLiveData<Outcome<List<CountriesDBModel>>> = MutableLiveData()
     private val _CountryDetails: MutableLiveData<Outcome<List<CountryDetails>>> = MutableLiveData()
 
 
@@ -33,6 +34,10 @@ class RemoteDataSource (
 
     override fun observerSearchCountries(): LiveData<Outcome<List<CountriesDBModel>>> {
         return _countrySearchResults
+    }
+
+    override fun observerMyCountry(): LiveData<Outcome<List<CountriesDBModel>>> {
+        return _myCountryResult
     }
 
     override suspend fun getAllCountriesFromRest(): Outcome<List<Country>> {
@@ -55,6 +60,18 @@ class RemoteDataSource (
                 Outcome.Error(ex)
             }
             _countrySearchResults.postValue(result)
+            result
+        }
+    }
+
+    override suspend fun getMyCountry(country: String): Outcome<List<CountriesDBModel>> {
+        return withContext(ioDispatcher) {
+            val result = try {
+                Outcome.Success(apiService.create().getCountryByName(country).convertToDBModel())
+            } catch (ex: Exception) {
+                Outcome.Error(ex)
+            }
+            _myCountryResult.postValue(result)
             result
         }
     }

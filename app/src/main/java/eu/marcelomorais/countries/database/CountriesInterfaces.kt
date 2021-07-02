@@ -18,8 +18,10 @@ interface CountriesNetworkDataSource {
     fun observerCountries(): LiveData<Outcome<List<Country>>>
     fun observerCountryDetails(): LiveData<Outcome<List<CountryDetails>>>
     fun observerSearchCountries(): LiveData<Outcome<List<CountriesDBModel>>>
+    fun observerMyCountry(): LiveData<Outcome<List<CountriesDBModel>>>
     suspend fun getAllCountriesFromRest(): Outcome<List<Country>>
     suspend fun getCountriesByName(country: String): Outcome<List<CountriesDBModel>>
+    suspend fun getMyCountry(country: String): Outcome<List<CountriesDBModel>>
     suspend fun getCountryDetails(country: String): Outcome<List<CountryDetails>>
 }
 
@@ -27,8 +29,10 @@ interface CountriesRepository {
     fun observerCountries(): LiveData<Outcome<List<CountriesDBModel>>>
     fun observerCountryDetails(): LiveData<Outcome<List<CountryDetails>>>
     fun observerSearchCountries(): LiveData<Outcome<List<CountriesDBModel>>>
+    fun observerMyCountry(): LiveData<Outcome<List<CountriesDBModel>>>
     suspend fun getAllCountriesFromDB(): Outcome<List<CountriesDBModel>>
     suspend fun getCountriesByName(country: String): Outcome<List<CountriesDBModel>>
+    suspend fun getMyCountry(country: String): Outcome<List<CountriesDBModel>>
     suspend fun getCountryDetails(country: String): Outcome<List<CountryDetails>>
     suspend fun refreshCountries()
 }
