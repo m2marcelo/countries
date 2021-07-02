@@ -52,6 +52,18 @@ xmlns:tools="http://schemas.android.com/tools">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
+    <ProgressBar
+        android:id="@+id/country_loading"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btn_show_Details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_country_name"
+        app:show_progress="@{viewModel.loading}" />
+
     <Button
         android:id="@+id/btn_show_Details"
         style="@style/button_style"

@@ -17,7 +17,6 @@ class MyCountryViewModel (private val repository: CountriesRepository) : ViewMod
 
     private var _currentCountry= CurrentCountry("", 0.0, 0.0)
 
-
     private val myCountryLiveData: LiveData<List<CountriesDBModel>> =
         Transformations.map(repository.observerSearchCountries()) {
             when (it) {
@@ -28,16 +27,27 @@ class MyCountryViewModel (private val repository: CountriesRepository) : ViewMod
                     Log.d("countriesList trans", "Success")
                     it.value
                 }
+                is Outcome.Loading -> {
+                    Log.d("myCountryLiveData", "Outcome.Loading")
+                    emptyList()
+                }
             }
         }
 
     val myCountryInfo: LiveData<List<CountriesDBModel>> = myCountryLiveData
+    private val _loading = MutableLiveData<Boolean>(true)
+    val loading: LiveData<Boolean> = _loading
 
     fun getCurrentCountry(country: CurrentCountry) {
         Log.d("MyCountryViewModel", "getCurrentCountry")
         _currentCountry = country
+        showProgressBar(true)
+        Log.d("MyCountryViewModel", "value = {$loading}")
+
         viewModelScope.launch {
             remoteGetCurrentData(country.countryName)
+            showProgressBar(false)
+            Log.d("MyCountryViewModel after", "value = {$loading.value}")
         }
     }
 
@@ -65,5 +75,9 @@ class MyCountryViewModel (private val repository: CountriesRepository) : ViewMod
             _myCountryDestinations.value = MyCountryFragmentDirections
                 .actionMyCountryFragmentToMapsFragment(_currentCountry)
         }
+    }
+
+    fun showProgressBar(value: Boolean) {
+        _loading.postValue(value)
     }
 }

@@ -46,6 +46,14 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
         viewModel.myCountryInfo.observe(viewLifecycleOwner){
         }
 
+        viewModel.loading.observe(viewLifecycleOwner) {
+            if (it) {
+                Log.d("MyCountryFragment", "loading true")
+            } else {
+                Log.d("MyCountryFragment", "loading false")
+            }
+        }
+
         viewModel.myCountryDestinations.observe(viewLifecycleOwner) {
             it?.let {
                 viewModel.clearMyCountryNavigationLiveData()
@@ -74,6 +82,7 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
     }
 
     override fun onPermissionDenied() {
+        viewModel.showProgressBar(false)
         Toast.makeText(
             requireContext(),
             getString(R.string.error_permission_denied),
@@ -83,6 +92,7 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
 
     override fun onCurrentLocationReady(location: CurrentCountry) {
         Log.d("onCurrentLocationReady in MyCountryFragment", "location = $location")
+        viewModel.showProgressBar(false)
         viewModel.getCurrentCountry(location)
     }
 
