@@ -2,10 +2,11 @@ package eu.marcelomorais.countries.adapters
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
@@ -47,7 +48,6 @@ fun addRecyclerViewContent(recyvlerViewList: RecyclerView, items: List<Countries
 
 @BindingAdapter("app:country_flag")
 fun getCountryFlag(imageView: ImageView, imgUrl: String?) {
-    Log.d("BindingAdapter getCountryFlag", "FLAG")
     if (imgUrl != null) {
         GlideToVectorYou
             .init()
@@ -69,17 +69,42 @@ fun addRecyclerViewLanguageItems(recyclerViewList: RecyclerView, items: List<Lan
     adapter.submitList(items)
 }
 
-@BindingAdapter("app:show_progress")
+@BindingAdapter("android:show_progress")
 fun showProgressBar(view: ProgressBar, loadingData: LiveData<Boolean?>) {
-    Log.d("BindingAdapter showProgressBar", "ENTREI PORRA ${loadingData}")
     loadingData.value?.let {
         if (it) {
-            Log.d("BindingAdapter showProgressBar", "fadein")
             view.fadeIn()
         } else {
-            Log.d("BindingAdapter showProgressBar", "fadein")
             view.fadeOut()
         }
     }
 }
+
+@BindingAdapter("android:toggle_text")
+fun showMyCountryLabel(textView: TextView, loadingData: LiveData<Boolean?>) {
+        loadingData.value?.let {
+            val displayText = textView.context.getString(
+                if (it) {
+                    R.string.my_location_searching
+                } else {
+                    R.string.my_location_greeting
+                }
+            )
+            textView.text = displayText
+            textView.fadeIn()
+        }
+}
+
+@BindingAdapter("android:show_button")
+fun showProgressBar(view: Button, loadingData: LiveData<Boolean?>) {
+    loadingData.value?.let {
+        if (it) {
+            view.fadeOut()
+        } else {
+            view.fadeIn()
+        }
+    }
+}
+
+
 
