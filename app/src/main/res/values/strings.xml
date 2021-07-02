@@ -39,6 +39,5 @@
     <string name="country_list_label">Countries list</string>
     <string name="country_instructions">Scroll and then choose a country, tap on it for more information about it.</string>
     <string name="search_error">No country found based on the input</string>
-
-
+    <string name="network_error">No network connection</string>
 </resources>
