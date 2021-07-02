@@ -20,7 +20,6 @@ class CountryDetailsFragment : Fragment() {
     private val countryArg: CountryDetailsFragmentArgs by navArgs()
     private lateinit var viewDataBinding: FragmentCountryDetailsBinding
 
-
     private val viewModel by viewModels<CountryDetailsViewModel> {
         CountryDetailsViewModelFactory(
             (requireContext().applicationContext as CountriesApp).countriesRepository,
@@ -39,7 +38,22 @@ class CountryDetailsFragment : Fragment() {
         viewDataBinding.lifecycleOwner = viewLifecycleOwner
 
         viewModel.currentCountryDetails.observe(viewLifecycleOwner) {
-            Log.d("CountryDetailsFragment", "result = ${it.first()}")
+            viewModel.updateDetails()
+        }
+
+        viewModel.callingCode.observe(viewLifecycleOwner) {
+        }
+        viewModel.borders.observe(viewLifecycleOwner) {
+        }
+        viewModel.timezone.observe(viewLifecycleOwner) {
+        }
+
+        viewModel.loading.observe(viewLifecycleOwner) {
+            if (it) {
+                Log.d("MyCountryFragment", "loading true")
+            } else {
+                Log.d("MyCountryFragment", "loading false")
+            }
         }
 
         viewDataBinding.recyclerViewLanguage.adapter = CountryLanguageAdapter()

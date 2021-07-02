@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/bigCountryFlag"
-            android:layout_width="300sp"
-            android:layout_height="250sp"
+            android:layout_width="250sp"
+            android:layout_height="200sp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -34,9 +34,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@{viewModel.currentCountryDetails.get(0).name}"
+            app:layout_constraintBottom_toTopOf="@+id/country_details_loading"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bigCountryFlag" />
+
+        <ProgressBar
+            android:id="@+id/country_details_loading"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="32dp"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            android:show_progress="@{viewModel.loading}"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.547"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/detail_capital_label"
@@ -166,7 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@{viewModel.currentCountryDetails.get(0).callingCodes.toString()}"
+            android:text="@{viewModel.callingCode}"
             app:layout_constraintStart_toEndOf="@+id/detail_calling_codes_label"
             app:layout_constraintTop_toBottomOf="@+id/detail_region" />
 
@@ -199,7 +214,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@{viewModel.currentCountryDetails.get(0).borders.toString()}"
+            android:text="@{viewModel.borders}"
             app:layout_constraintStart_toEndOf="@+id/borders_label"
             app:layout_constraintTop_toBottomOf="@+id/detail_population" />
 
@@ -210,7 +225,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@{viewModel.currentCountryDetails.get(0).timezones.toString()}"
+            android:text="@{viewModel.timezone}"
             app:layout_constraintStart_toEndOf="@+id/timezone_label"
             app:layout_constraintTop_toBottomOf="@+id/detail_borders" />
 
@@ -218,9 +233,9 @@
             android:id="@+id/recycler_view_language"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             app:language_items="@{viewModel.currentCountryDetails.get(0).languages}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/currencies_label"
@@ -231,8 +246,8 @@
             android:id="@+id/recycler_view_currency"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
             app:currency_items="@{viewModel.currentCountryDetails.get(0).currencies}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

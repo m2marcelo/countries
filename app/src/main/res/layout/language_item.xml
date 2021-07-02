@@ -72,13 +72,13 @@
             app:layout_constraintTop_toBottomOf="@+id/language_name_label" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/native_name_text"
             style="@style/country_item_subheader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:text="@{language.nativeName"
+            android:text="@{language.nativeName}"
             app:layout_constraintStart_toEndOf="@+id/language_native_label"
             app:layout_constraintTop_toBottomOf="@+id/language_name_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
