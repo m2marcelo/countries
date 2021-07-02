@@ -15,6 +15,7 @@ import eu.marcelomorais.countries.R
 import eu.marcelomorais.countries.databinding.MyCountryFragmentBinding
 import eu.marcelomorais.countries.restApi.models.CurrentCountry
 import eu.marcelomorais.countries.utils.LocationUtils
+import eu.marcelomorais.countries.utils.NetworkConnection
 import eu.marcelomorais.countries.utils.PermissionHandler
 
 class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, LocationUtils.LocationListener {
@@ -66,6 +67,14 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
         return viewDataBinding.root
     }
 
+    private fun showNetworkError() {
+        Toast.makeText(
+            requireContext(),
+            R.string.network_error,
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         permissionUtil.checkPermissions(this)
@@ -78,7 +87,12 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
 
     @SuppressLint("MissingPermission")
     override fun onPermissionGranted() {
-        locationUtil.getLocation(requireActivity(), requireContext())
+        if(NetworkConnection(requireContext()).isConnected()) {
+            locationUtil.getLocation(requireActivity(), requireContext())
+        } else {
+            showNetworkError()
+            viewModel.showProgressBar(false)
+        }
     }
 
     override fun onPermissionDenied() {
@@ -93,8 +107,11 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
     override fun onCurrentLocationReady(location: CurrentCountry) {
         Log.d("onCurrentLocationReady in MyCountryFragment", "location = $location")
         viewModel.showProgressBar(false)
-        viewModel.getCurrentCountry(location)
+
+        if(NetworkConnection(requireContext()).isConnected()) {
+            viewModel.getCurrentCountry(location)
+        } else {
+            showNetworkError()
+        }
     }
-
-
 }
