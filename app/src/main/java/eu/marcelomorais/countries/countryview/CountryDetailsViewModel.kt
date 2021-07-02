@@ -24,6 +24,9 @@ class CountryDetailsViewModel(
                 is Outcome.Error -> {
                     emptyList()
                 }
+                is Outcome.Loading -> {
+                    emptyList()
+                }
             }
         }
 

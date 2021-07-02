@@ -23,6 +23,9 @@ class SearchCountryViewModel(private val repository: CountriesRepository) : View
                     Log.d("countriesList trans", "Success")
                     it.value
                 }
+                is Outcome.Loading -> {
+                    emptyList()
+                }
             }
         }
 

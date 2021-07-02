@@ -19,6 +19,9 @@ class CountriesViewModel(private val repository: CountriesRepository) : ViewMode
                 is Outcome.Success -> {
                     it.value
                 }
+                is Outcome.Loading -> {
+                    emptyList()
+                }
             }
     }
     private val _navigateTo = MutableLiveData<NavDirections?>()
