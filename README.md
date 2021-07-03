@@ -7,7 +7,7 @@ This is my capstone project for the Udacity Android Kotlin Developer Nanodegree 
 The app idea is fetch data from the countries and diplay it to the user.
 There is a list of the the countries, search, show the country in the map, 
 getting more details for the country and pick the country based on the 
-user's current location..
+user's current location.
 
 ## Rest API
 
@@ -41,7 +41,7 @@ It leverages the following components from the Jetpack library:
 
 ## Development helping resources and credits
 
-For this project I did some research to help me finding solutions to some problems. I can quite a few:
+For this project I used the contente presente in the nanodegree videos, picked a few content from previous projects and did some web research to help me finding solutions to some problems. I can quite a few:
 * ExpressoIdlingResource.kt - got this code from the previous projects available in Udacity.
 * Outcome.kt - Sealed class to help me handling the requests and exceptions, got the concept from [here](https://phauer.com/2019/sealed-classes-exceptions-kotlin/)
 
