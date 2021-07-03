@@ -26,9 +26,6 @@ class MyCountryViewModel (private val repository: CountriesRepository) : ViewMod
                 is Outcome.Success -> {
                     it.value
                 }
-                is Outcome.Loading -> {
-                    emptyList()
-                }
             }
         }
 

@@ -21,9 +21,6 @@ class SearchCountryViewModel(private val repository: CountriesRepository) : View
                 is Outcome.Success -> {
                     it.value
                 }
-                is Outcome.Loading -> {
-                    emptyList()
-                }
             }
         }
 

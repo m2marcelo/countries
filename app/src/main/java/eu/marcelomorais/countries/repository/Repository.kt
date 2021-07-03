@@ -59,7 +59,6 @@ class Repository (
                         }
                     }
                     is Outcome.Error -> throw currentContent.cause!!
-                    is Outcome.Loading -> {}
                 }
             } catch (exception: Exception) {
                 throw exception
