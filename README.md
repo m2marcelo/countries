@@ -9,6 +9,11 @@ There is a list of the the countries, search, show the country in the map,
 getting more details for the country and pick the country based on the 
 user's current location.
 
+## Design
+
+I am not a good designer, so I made it simple, my choice for simple colors is just
+to make the app clean.
+
 ## Rest API
 
 The app is retrieving data from:
