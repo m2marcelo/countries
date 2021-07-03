@@ -40,6 +40,7 @@ class MyCountryViewModel (private val repository: CountriesRepository) : ViewMod
             remoteGetCurrentData(country.countryName)
             showProgressBar(false)
         }
+        showProgressBar(false)
     }
 
     private suspend fun remoteGetCurrentData(countryName: String) {

@@ -2,7 +2,6 @@ package eu.marcelomorais.countries.countryview
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,11 +47,6 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
         }
 
         viewModel.loading.observe(viewLifecycleOwner) {
-            if (it) {
-                Log.d("MyCountryFragment", "loading true")
-            } else {
-                Log.d("MyCountryFragment", "loading false")
-            }
         }
 
         viewModel.myCountryDestinations.observe(viewLifecycleOwner) {
@@ -61,8 +55,6 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
                 findNavController().navigate(it)
             }
         }
-
-        Log.d("MyCountryFragment", "onCreateView")
 
         return viewDataBinding.root
     }
@@ -82,6 +74,7 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
 
     override fun onDestroyView() {
         permissionUtil.unregister()
+        viewModel.showProgressBar(false)
         super.onDestroyView()
     }
 
@@ -105,7 +98,6 @@ class MyCountryFragment : Fragment(), PermissionHandler.PermissionListener, Loca
     }
 
     override fun onCurrentLocationReady(location: CurrentCountry) {
-        Log.d("onCurrentLocationReady in MyCountryFragment", "location = $location")
         viewModel.showProgressBar(false)
 
         if(NetworkConnection(requireContext()).isConnected()) {
