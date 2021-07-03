@@ -96,7 +96,7 @@ fun showMyCountryLabel(textView: TextView, loadingData: LiveData<Boolean?>) {
 }
 
 @BindingAdapter("android:show_button")
-fun showProgressBar(view: Button, loadingData: LiveData<Boolean?>) {
+fun showButtons(view: Button, loadingData: LiveData<Boolean?>) {
     loadingData.value?.let {
         if (it) {
             view.fadeOut()
