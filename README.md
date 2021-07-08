@@ -4,18 +4,20 @@ This is my capstone project for the Udacity Android Kotlin Developer Nanodegree 
 
 ## About the app
 
-The app idea is fetch data from the countries and diplay it to the user.
-There is a list of the the countries, search, show the country in the map, 
-getting more details for the country and pick the country based on the 
-user's current location.
+The app idea is fetch data from the countries and display them to the user.
+The actions in this app are quite simple, there is a list of all countries,
+the user can just tap into a list item to go to another screen, also a country
+search based on user's input and finally show the current country based on user's
+location, from there is is possible get more details for the country and pick the
+country based on the user's current location and display it using Google Maps.
 
 ## Design
 
 I am not a good designer, so I made it simple, my choice for simple colors is just
 to make the app clean.
 
-The launcher screen has buttons for the actions allowed in the app, also from the countries list you can just click
-on an country to get getails.
+The launcher screen has buttons for the actions allowed in the app, also from the 
+countries list you can just click on an country to get getails.
 
 ## Rest API
 
@@ -48,8 +50,9 @@ It leverages the following components from the Jetpack library:
 
 ## Google Maps API Key
 
-* To have the app running with full capabilities, please add the google map key for it.
-* Locate the file named google_maps_api.xml in the project, in there there will be a link to generate the Google Maps API key needed.
+* To have the app running with full map capabilities, please add your google map key into the project.
+* Locate the file named google_maps_api.xml in the project, in there, there will be a link to generate the Google Maps API key needed.
+* Follow the instructions, copy the generated key.
 * In the xml file, please change the ADD_YOUR_KEY_HERE for the key you just generated and the project ill be able to show the maps!
 
 
