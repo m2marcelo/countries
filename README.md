@@ -14,11 +14,14 @@ user's current location.
 I am not a good designer, so I made it simple, my choice for simple colors is just
 to make the app clean.
 
+The launcher screen has buttons for the actions allowed in the app, also from the countries list you can just click
+on an country to get getails.
+
 ## Rest API
 
 The app is retrieving data from:
 
-* [REST Countries] (https://restcountries.eu)
+* [REST Countries](https://restcountries.eu)
 
 ## Android components and resources
 
@@ -41,12 +44,18 @@ It leverages the following components from the Jetpack library:
 
 ## Suggested Workflow
 
-* Import the project in the Android Studio and run it, in a device or in the emulator.
-* For the Udacity review I will leave my google API key, but will remove it later ;)
+* Import the project in the Android Studio, add your google maps (as explained in the next section) and then run it, in a device or in the emulator.
+
+## Google Maps API Key
+
+* To have the app running with full capabilities, please add the google map key for it.
+* Locate the file named google_maps_api.xml in the project, in there there will be a link to generate the Google Maps API key needed.
+* In the xml file, please change the ADD_YOUR_KEY_HERE for the key you just generated and the project ill be able to show the maps!
+
 
 ## Development helping resources and credits
 
-For this project I used the contente presente in the nanodegree videos, picked a few content from previous projects and did some web research to help me finding solutions to some problems. I can quite a few:
+For this project I used the content presented in the nanodegree videos, picked a few content from previous projects and did some web research to help me finding solutions to some problems. I can quote these:
 * ExpressoIdlingResource.kt - got this code from the previous projects available in Udacity.
 * Outcome.kt - Sealed class to help me handling the requests and exceptions, got the concept from [here](https://phauer.com/2019/sealed-classes-exceptions-kotlin/)
 
