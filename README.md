@@ -62,6 +62,9 @@ For this project I used the content presented in the nanodegree videos, picked a
 * ExpressoIdlingResource.kt - got this code from the previous projects available in Udacity.
 * Outcome.kt - Sealed class to help me handling the requests and exceptions, got the concept from [here](https://phauer.com/2019/sealed-classes-exceptions-kotlin/)
 
+## Known Issues
+Sometimes, when scrolling the countries list, GLIDE doesn't display the flag due an internal error on GlideExecutor and throw an exception instead.
+
 ## Report Issues
 Notice any issues with a repository? Please file a github issue in the repository.
 
