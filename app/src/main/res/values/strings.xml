@@ -40,4 +40,10 @@
     <string name="country_instructions">Scroll and then choose a country, tap on it for more information about it.</string>
     <string name="search_error">No country found based on the input</string>
     <string name="network_error">No network connection</string>
+    <string name="my_contry_fragment">My Country</string>
+    <string name="search_country_fragment">Search Country</string>
+    <string name="countries_fragment">All Countries</string>
+    <string name="country_details_fragment">Country Details</string>
+    <string name="fragment_maps">My country in the map</string>
+    <string name="fragment_launch_lable">Countries App</string>
 </resources>

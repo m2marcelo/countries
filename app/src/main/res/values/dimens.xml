@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="img_end_size">45dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="size_0dp">0dp</dimen>
+    <dimen name="flag_size">85dp</dimen>
+    <dimen name="recycler_width">409dp</dimen>
+    <dimen name="flag_width">100dp</dimen>
+    <dimen name="flag_height">85dp</dimen>
+    <dimen name="margin_12dp">12dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
+    <dimen name="details_flag_width">250sp</dimen>
+    <dimen name="details_flag_height">200sp</dimen>
+    <dimen name="loading_size">45dp</dimen>
+    <dimen name="margin_32dp">32dp</dimen>
+    <dimen name="margin_80dp">80dp</dimen>
+    <dimen name="logo_width">352dp</dimen>
+    <dimen name="logo_height">358dp</dimen>
+    <dimen name="height_48dp">48dp</dimen>
+    <dimen name="margin_64dp">64dp</dimen>
+    <dimen name="margin_24dp">24dp</dimen>
+    <dimen name="mycountry_width">366dp</dimen>
+    <dimen name="mycountry_height">224dp</dimen>
+    <dimen name="margin_30dp">30dp</dimen>
+    <dimen name="search_img_size">30dp</dimen>
+    <dimen name="margin_42dp">42dp</dimen>
+</resources>

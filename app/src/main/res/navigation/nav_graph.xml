@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/launchFragment"
         android:name="eu.marcelomorais.countries.launch.LaunchFragment"
-        android:label="fragment_launch"
+        android:label="@string/fragment_launch_lable"
         tools:layout="@layout/fragment_launch" >
         <action
             android:id="@+id/action_launchFragment_to_myCountryFragment"
@@ -36,7 +36,7 @@
     <fragment
         android:id="@+id/myCountryFragment"
         android:name="eu.marcelomorais.countries.countryview.MyCountryFragment"
-        android:label="my_country_fragment"
+        android:label="@string/my_contry_fragment"
         tools:layout="@layout/my_country_fragment" >
         <action
             android:id="@+id/action_myCountryFragment_to_countryDetailsFragment"
@@ -56,7 +56,7 @@
     <fragment
         android:id="@+id/searchCountryFragment"
         android:name="eu.marcelomorais.countries.countryview.SearchCountryFragment"
-        android:label="search_country_fragment"
+        android:label="@string/search_country_fragment"
         tools:layout="@layout/search_country_fragment" >
         <action
             android:id="@+id/action_searchCountryFragment_to_countryDetailsFragment"
@@ -69,7 +69,7 @@
     <fragment
         android:id="@+id/countriesFragment"
         android:name="eu.marcelomorais.countries.countryview.CountriesFragment"
-        android:label="countries_fragment"
+        android:label="@string/countries_fragment"
         tools:layout="@layout/countries_fragment" >
         <action
             android:id="@+id/action_countriesFragment_to_countryDetailsFragment"
@@ -82,7 +82,7 @@
     <fragment
         android:id="@+id/countryDetailsFragment"
         android:name="eu.marcelomorais.countries.countryview.CountryDetailsFragment"
-        android:label="CountryDetailsFragment" >
+        android:label="@string/country_details_fragment" >
         <action
             android:id="@+id/action_countryDetailsFragment_to_countriesFragment"
             app:destination="@id/countriesFragment"
@@ -111,7 +111,7 @@
     <fragment
         android:id="@+id/mapsFragment"
         android:name="eu.marcelomorais.countries.countryview.MapsFragment"
-        android:label="fragment_maps"
+        android:label="@string/fragment_maps"
         tools:layout="@layout/fragment_maps" >
         <action
             android:id="@+id/action_mapsFragment_to_myCountryFragment"

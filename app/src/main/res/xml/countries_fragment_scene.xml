@@ -25,17 +25,17 @@
         <Constraint
             android:id="@+id/img_list"
             android:elevation="10dp"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="@dimen/img_end_size"
+            android:layout_height="@dimen/img_end_size"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_marginTop="@dimen/margin_16dp"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent">
         </Constraint>
         <Constraint
             android:id="@id/label_countries_result_list"
-            android:layout_height="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_height="@dimen/margin_8dp"
+            android:layout_marginStart="@dimen/margin_8dp"
             android:alpha="0"
             motion:layout_constraintBottom_toBottomOf="@+id/img_list"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -45,8 +45,8 @@
         <Constraint
             android:id="@id/country_list_subheader"
             android:alpha="0"
-            android:layout_height="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_height="@dimen/margin_8dp"
+            android:layout_marginStart="@dimen/margin_8dp"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toEndOf="@+id/img_list"
             motion:layout_constraintTop_toBottomOf="@+id/label_countries_result_list">
